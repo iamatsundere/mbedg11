@@ -1,0 +1,615 @@
+
+IPS.elf:     file format elf32-avr
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .text         000002c0  00000000  00000000  00000094  2**1
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  1 .data         00000004  00800060  000002c0  00000354  2**0
+                  CONTENTS, ALLOC, LOAD, DATA
+  2 .bss          00000001  00800064  00800064  00000358  2**0
+                  ALLOC
+  3 .stab         000006cc  00000000  00000000  00000358  2**2
+                  CONTENTS, READONLY, DEBUGGING
+  4 .stabstr      00000090  00000000  00000000  00000a24  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  5 .debug_aranges 00000020  00000000  00000000  00000ab4  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  6 .debug_pubnames 000000d8  00000000  00000000  00000ad4  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  7 .debug_info   000004c1  00000000  00000000  00000bac  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  8 .debug_abbrev 0000021f  00000000  00000000  0000106d  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  9 .debug_line   00000521  00000000  00000000  0000128c  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 10 .debug_frame  000000e0  00000000  00000000  000017b0  2**2
+                  CONTENTS, READONLY, DEBUGGING
+ 11 .debug_str    00000190  00000000  00000000  00001890  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 12 .debug_loc    00000135  00000000  00000000  00001a20  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 13 .debug_pubtypes 00000038  00000000  00000000  00001b55  2**0
+                  CONTENTS, READONLY, DEBUGGING
+
+Disassembly of section .text:
+
+00000000 <__vectors>:
+   0:	0c 94 2a 00 	jmp	0x54	; 0x54 <__ctors_end>
+   4:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+   8:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+   c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  10:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  14:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  18:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  1c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  20:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  24:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  28:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  2c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  30:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  34:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  38:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  3c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  40:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  44:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  48:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  4c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  50:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+
+00000054 <__ctors_end>:
+  54:	11 24       	eor	r1, r1
+  56:	1f be       	out	0x3f, r1	; 63
+  58:	cf e5       	ldi	r28, 0x5F	; 95
+  5a:	d8 e0       	ldi	r29, 0x08	; 8
+  5c:	de bf       	out	0x3e, r29	; 62
+  5e:	cd bf       	out	0x3d, r28	; 61
+
+00000060 <__do_copy_data>:
+  60:	10 e0       	ldi	r17, 0x00	; 0
+  62:	a0 e6       	ldi	r26, 0x60	; 96
+  64:	b0 e0       	ldi	r27, 0x00	; 0
+  66:	e0 ec       	ldi	r30, 0xC0	; 192
+  68:	f2 e0       	ldi	r31, 0x02	; 2
+  6a:	02 c0       	rjmp	.+4      	; 0x70 <__do_copy_data+0x10>
+  6c:	05 90       	lpm	r0, Z+
+  6e:	0d 92       	st	X+, r0
+  70:	a4 36       	cpi	r26, 0x64	; 100
+  72:	b1 07       	cpc	r27, r17
+  74:	d9 f7       	brne	.-10     	; 0x6c <__do_copy_data+0xc>
+
+00000076 <__do_clear_bss>:
+  76:	10 e0       	ldi	r17, 0x00	; 0
+  78:	a4 e6       	ldi	r26, 0x64	; 100
+  7a:	b0 e0       	ldi	r27, 0x00	; 0
+  7c:	01 c0       	rjmp	.+2      	; 0x80 <.do_clear_bss_start>
+
+0000007e <.do_clear_bss_loop>:
+  7e:	1d 92       	st	X+, r1
+
+00000080 <.do_clear_bss_start>:
+  80:	a5 36       	cpi	r26, 0x65	; 101
+  82:	b1 07       	cpc	r27, r17
+  84:	e1 f7       	brne	.-8      	; 0x7e <.do_clear_bss_loop>
+  86:	0e 94 fb 00 	call	0x1f6	; 0x1f6 <main>
+  8a:	0c 94 5e 01 	jmp	0x2bc	; 0x2bc <_exit>
+
+0000008e <__bad_interrupt>:
+  8e:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
+
+00000092 <Read2Nib>:
+#define DDR_DATA	DDRD
+*/
+
+char Read2Nib(){
+	char HNib, LNib;
+	DATA_O |=0xF0;
+  92:	82 b3       	in	r24, 0x12	; 18
+  94:	80 6f       	ori	r24, 0xF0	; 240
+  96:	82 bb       	out	0x12, r24	; 18
+	
+	sbi(CTRL,EN); //enable	
+  98:	92 9a       	sbi	0x12, 2	; 18
+	DDR_DATA &=0x0F;	
+  9a:	81 b3       	in	r24, 0x11	; 17
+  9c:	8f 70       	andi	r24, 0x0F	; 15
+  9e:	81 bb       	out	0x11, r24	; 17
+	HNib=DATA_I & 0xF0;
+  a0:	80 b3       	in	r24, 0x10	; 16
+	cbi(CTRL,EN); //disable
+  a2:	92 98       	cbi	0x12, 2	; 18
+	
+	sbi(CTRL,EN); //enable
+  a4:	92 9a       	sbi	0x12, 2	; 18
+	LNib = DATA_I & 0xF0;
+  a6:	90 b3       	in	r25, 0x10	; 16
+	cbi(CTRL,EN); //disable
+  a8:	92 98       	cbi	0x12, 2	; 18
+	LNib>>=4;
+  aa:	92 95       	swap	r25
+  ac:	9f 70       	andi	r25, 0x0F	; 15
+	char HNib, LNib;
+	DATA_O |=0xF0;
+	
+	sbi(CTRL,EN); //enable	
+	DDR_DATA &=0x0F;	
+	HNib=DATA_I & 0xF0;
+  ae:	80 7f       	andi	r24, 0xF0	; 240
+	sbi(CTRL,EN); //enable
+	LNib = DATA_I & 0xF0;
+	cbi(CTRL,EN); //disable
+	LNib>>=4;
+	return (HNib|LNib);
+}
+  b0:	89 2b       	or	r24, r25
+  b2:	08 95       	ret
+
+000000b4 <Write2Nib>:
+
+void Write2Nib(uint8_t chr){
+
+	uint8_t HNib, LNib, temp_data;	
+	temp_data=DATA_O & 0x0F;
+  b4:	92 b3       	in	r25, 0x12	; 18
+  b6:	9f 70       	andi	r25, 0x0F	; 15
+
+	HNib=chr & 0xF0;
+  b8:	28 2f       	mov	r18, r24
+  ba:	20 7f       	andi	r18, 0xF0	; 240
+	LNib=(chr<<4) & 0xF0;
+		
+	DATA_O =(HNib |temp_data);	
+  bc:	29 2b       	or	r18, r25
+  be:	22 bb       	out	0x12, r18	; 18
+	sbi(CTRL,EN); //enable
+  c0:	92 9a       	sbi	0x12, 2	; 18
+	cbi(CTRL,EN); //disable	
+  c2:	92 98       	cbi	0x12, 2	; 18
+
+	uint8_t HNib, LNib, temp_data;	
+	temp_data=DATA_O & 0x0F;
+
+	HNib=chr & 0xF0;
+	LNib=(chr<<4) & 0xF0;
+  c4:	82 95       	swap	r24
+  c6:	80 7f       	andi	r24, 0xF0	; 240
+		
+	DATA_O =(HNib |temp_data);	
+	sbi(CTRL,EN); //enable
+	cbi(CTRL,EN); //disable	
+	
+	DATA_O =(LNib|temp_data);		
+  c8:	98 2b       	or	r25, r24
+  ca:	92 bb       	out	0x12, r25	; 18
+	sbi(CTRL,EN); //enable
+  cc:	92 9a       	sbi	0x12, 2	; 18
+	cbi(CTRL,EN); //disable
+  ce:	92 98       	cbi	0x12, 2	; 18
+}
+  d0:	08 95       	ret
+
+000000d2 <Write8Bit>:
+
+void Write8Bit(uint8_t chr){
+	DATA_O=chr;   //out 8 bits to DATA Line
+  d2:	82 bb       	out	0x12, r24	; 18
+	sbi(CTRL,EN); //enable
+  d4:	92 9a       	sbi	0x12, 2	; 18
+	cbi(CTRL,EN); //disable
+  d6:	92 98       	cbi	0x12, 2	; 18
+}
+  d8:	08 95       	ret
+
+000000da <wait_LCD>:
+
+void wait_LCD(){	
+  da:	0f 93       	push	r16
+  dc:	1f 93       	push	r17
+  de:	df 93       	push	r29
+  e0:	cf 93       	push	r28
+  e2:	0f 92       	push	r0
+  e4:	cd b7       	in	r28, 0x3d	; 61
+  e6:	de b7       	in	r29, 0x3e	; 62
+		char temp_val;
+		while(1){
+			cbi(CTRL,RS); //RS=0 mean the following data is COMMAND (not normal DATA)
+			sbi(CTRL,RW); //the Direction of this COMMAND is from LCD -> chip
+			temp_val=Read2Nib();
+			if (bit_is_clear(temp_val,7)) break;
+  e8:	8e 01       	movw	r16, r28
+  ea:	0f 5f       	subi	r16, 0xFF	; 255
+  ec:	1f 4f       	sbci	r17, 0xFF	; 255
+		cbi(CTRL,RW); //ready for next step	
+		DDR_DATA=0xFF;//Ready to Out
+	#else
+		char temp_val;
+		while(1){
+			cbi(CTRL,RS); //RS=0 mean the following data is COMMAND (not normal DATA)
+  ee:	90 98       	cbi	0x12, 0	; 18
+			sbi(CTRL,RW); //the Direction of this COMMAND is from LCD -> chip
+  f0:	91 9a       	sbi	0x12, 1	; 18
+			temp_val=Read2Nib();
+  f2:	0e 94 49 00 	call	0x92	; 0x92 <Read2Nib>
+  f6:	89 83       	std	Y+1, r24	; 0x01
+			if (bit_is_clear(temp_val,7)) break;
+  f8:	f8 01       	movw	r30, r16
+  fa:	80 81       	ld	r24, Z
+  fc:	88 23       	and	r24, r24
+  fe:	bc f3       	brlt	.-18     	; 0xee <wait_LCD+0x14>
+		}
+		cbi(CTRL,RW); //ready for next step	
+ 100:	91 98       	cbi	0x12, 1	; 18
+		DDR_DATA=0xFF;//Ready to Out		
+ 102:	8f ef       	ldi	r24, 0xFF	; 255
+ 104:	81 bb       	out	0x11, r24	; 17
+	#endif
+	
+	//_delay_ms(1);
+	
+}
+ 106:	0f 90       	pop	r0
+ 108:	cf 91       	pop	r28
+ 10a:	df 91       	pop	r29
+ 10c:	1f 91       	pop	r17
+ 10e:	0f 91       	pop	r16
+ 110:	08 95       	ret
+
+00000112 <init_LCD>:
+
+
+void init_LCD(){
+	DDR_CTRL=0xFF;
+ 112:	8f ef       	ldi	r24, 0xFF	; 255
+ 114:	81 bb       	out	0x11, r24	; 17
+	DDR_DATA=0xFF;
+ 116:	81 bb       	out	0x11, r24	; 17
+//Function set------------------------------------------------------------------------------
+	cbi(CTRL,RS);   // the following data is COMMAND
+ 118:	90 98       	cbi	0x12, 0	; 18
+	cbi(CTRL, RW); // AVR->LCD
+ 11a:	91 98       	cbi	0x12, 1	; 18
+	cbi(CTRL, EN);
+ 11c:	92 98       	cbi	0x12, 2	; 18
+	#ifdef LCD8BIT	
+		Write8Bit(0x38);
+		wait_LCD();
+	#else
+		sbi(CTRL,EN); //enable
+ 11e:	92 9a       	sbi	0x12, 2	; 18
+		sbi(DATA_O, 5); 
+ 120:	95 9a       	sbi	0x12, 5	; 18
+		cbi(CTRL,EN); //disable
+ 122:	92 98       	cbi	0x12, 2	; 18
+		wait_LCD();		
+ 124:	0e 94 6d 00 	call	0xda	; 0xda <wait_LCD>
+		Write2Nib(0x28);//
+ 128:	88 e2       	ldi	r24, 0x28	; 40
+ 12a:	0e 94 5a 00 	call	0xb4	; 0xb4 <Write2Nib>
+		wait_LCD();	
+ 12e:	0e 94 6d 00 	call	0xda	; 0xda <wait_LCD>
+	#endif
+//Display control-------------------------------------------------------------------------	
+	cbi(CTRL,RS); // the following data is COMMAND 
+ 132:	90 98       	cbi	0x12, 0	; 18
+	#ifdef LCD8BIT	
+		Write8Bit(0x0E);
+		wait_LCD();
+	#else
+		Write2Nib(0x0E);
+ 134:	8e e0       	ldi	r24, 0x0E	; 14
+ 136:	0e 94 5a 00 	call	0xb4	; 0xb4 <Write2Nib>
+		wait_LCD();			
+ 13a:	0e 94 6d 00 	call	0xda	; 0xda <wait_LCD>
+	#endif
+//Entry mode set------------------------------------------------------------------------
+	cbi(CTRL,RS); // the following data is COMMAND 
+ 13e:	90 98       	cbi	0x12, 0	; 18
+	#ifdef LCD8BIT
+		Write8Bit(0x06);
+		wait_LCD();
+	#else
+		Write2Nib(0x06);
+ 140:	86 e0       	ldi	r24, 0x06	; 6
+ 142:	0e 94 5a 00 	call	0xb4	; 0xb4 <Write2Nib>
+		wait_LCD();
+ 146:	0e 94 6d 00 	call	0xda	; 0xda <wait_LCD>
+	#endif
+}
+ 14a:	08 95       	ret
+
+0000014c <home_LCD>:
+
+void home_LCD(){
+	cbi(CTRL,RS); // the following data is COMMAND 
+ 14c:	90 98       	cbi	0x12, 0	; 18
+	#ifdef LCD8BIT	
+		Write8Bit(0x02);
+		wait_LCD();	
+	#else
+		Write2Nib(0x02);
+ 14e:	82 e0       	ldi	r24, 0x02	; 2
+ 150:	0e 94 5a 00 	call	0xb4	; 0xb4 <Write2Nib>
+		wait_LCD();
+ 154:	0e 94 6d 00 	call	0xda	; 0xda <wait_LCD>
+	#endif	
+}
+ 158:	08 95       	ret
+
+0000015a <move_LCD>:
+void move_LCD(uint8_t y,uint8_t x){
+	uint8_t Ad;
+	Ad=64*(y-1)+(x-1)+0x80; //
+	cbi(CTRL,RS); // the following data is COMMAND
+ 15a:	90 98       	cbi	0x12, 0	; 18
+		wait_LCD();
+	#endif	
+}
+void move_LCD(uint8_t y,uint8_t x){
+	uint8_t Ad;
+	Ad=64*(y-1)+(x-1)+0x80; //
+ 15c:	82 95       	swap	r24
+ 15e:	88 0f       	add	r24, r24
+ 160:	88 0f       	add	r24, r24
+ 162:	80 7c       	andi	r24, 0xC0	; 192
+ 164:	86 0f       	add	r24, r22
+	cbi(CTRL,RS); // the following data is COMMAND
+	#ifdef LCD8BIT	
+		Write8Bit(Ad);
+		wait_LCD();
+	#else
+		Write2Nib(Ad);
+ 166:	81 5c       	subi	r24, 0xC1	; 193
+ 168:	0e 94 5a 00 	call	0xb4	; 0xb4 <Write2Nib>
+		wait_LCD();
+ 16c:	0e 94 6d 00 	call	0xda	; 0xda <wait_LCD>
+	#endif	
+}
+ 170:	08 95       	ret
+
+00000172 <clr_LCD>:
+
+void clr_LCD(){
+	cbi(CTRL,RS); //RS=0 mean the following data is COMMAND (not normal DATA)
+ 172:	90 98       	cbi	0x12, 0	; 18
+	#ifdef LCD8BIT	
+		Write8Bit(0x01);
+		wait_LCD();	
+	#else
+		Write2Nib(0x01);
+ 174:	81 e0       	ldi	r24, 0x01	; 1
+ 176:	0e 94 5a 00 	call	0xb4	; 0xb4 <Write2Nib>
+		wait_LCD();	
+ 17a:	0e 94 6d 00 	call	0xda	; 0xda <wait_LCD>
+		
+	#endif	
+}
+ 17e:	08 95       	ret
+
+00000180 <putChar_LCD>:
+
+void putChar_LCD(uint8_t chr){
+	sbi(CTRL,RS); //this is a normal DATA	
+ 180:	90 9a       	sbi	0x12, 0	; 18
+	#ifdef LCD8BIT	
+		Write8Bit(chr);
+		wait_LCD();	
+	#else
+		Write2Nib(chr);
+ 182:	0e 94 5a 00 	call	0xb4	; 0xb4 <Write2Nib>
+		wait_LCD();	
+ 186:	0e 94 6d 00 	call	0xda	; 0xda <wait_LCD>
+	#endif		
+}
+ 18a:	08 95       	ret
+
+0000018c <print_LCD>:
+
+void print_LCD(char* str){
+ 18c:	1f 93       	push	r17
+ 18e:	cf 93       	push	r28
+ 190:	df 93       	push	r29
+ 192:	ec 01       	movw	r28, r24
+	 unsigned char i;
+	 for (i=0; str[i]!=0; i++) putChar_LCD(str[i]);	 
+ 194:	88 81       	ld	r24, Y
+ 196:	88 23       	and	r24, r24
+ 198:	51 f0       	breq	.+20     	; 0x1ae <print_LCD+0x22>
+ 19a:	10 e0       	ldi	r17, 0x00	; 0
+ 19c:	0e 94 c0 00 	call	0x180	; 0x180 <putChar_LCD>
+ 1a0:	1f 5f       	subi	r17, 0xFF	; 255
+ 1a2:	fe 01       	movw	r30, r28
+ 1a4:	e1 0f       	add	r30, r17
+ 1a6:	f1 1d       	adc	r31, r1
+ 1a8:	80 81       	ld	r24, Z
+ 1aa:	88 23       	and	r24, r24
+ 1ac:	b9 f7       	brne	.-18     	; 0x19c <print_LCD+0x10>
+}
+ 1ae:	df 91       	pop	r29
+ 1b0:	cf 91       	pop	r28
+ 1b2:	1f 91       	pop	r17
+ 1b4:	08 95       	ret
+
+000001b6 <SPI_MasterInit>:
+
+volatile uint8_t wData[3]={0, 80, 160}, dis[]; //wData: du lieu de send
+
+//Khoi dong SPI o che do Master 
+void SPI_MasterInit(void){
+        SPI_DDR |=(1<<SCK_PIN)|(1<<MOSI_PIN);
+ 1b6:	87 b3       	in	r24, 0x17	; 23
+ 1b8:	80 6a       	ori	r24, 0xA0	; 160
+ 1ba:	87 bb       	out	0x17, r24	; 23
+		SPI_PORT|=(1<<MISO_PIN); //dien tro keo len cho chan MISO 			
+ 1bc:	c6 9a       	sbi	0x18, 6	; 24
+        SPCR=(1<<SPIE)|(1<<SPE)|(1<<MSTR)|(1<<CPHA)|(1<<SPR1)|(1<<SPR0); 
+ 1be:	87 ed       	ldi	r24, 0xD7	; 215
+ 1c0:	8d b9       	out	0x0d, r24	; 13
+		//SPIE: interrupt, SPE: enable, MSTR: Master mode, CPHA: Phase, SPR1:0: prescaler=128		
+		//Setup cho cac chan dieu khien dia chi Slave
+		ADDRESS_DDR |=(1<<Slave(2))|(1<<Slave(1))|(1<<Slave(0));
+ 1c2:	87 b3       	in	r24, 0x17	; 23
+ 1c4:	87 60       	ori	r24, 0x07	; 7
+ 1c6:	87 bb       	out	0x17, r24	; 23
+		ADDRESS_PORT|=(1<<Slave(2))|(1<<Slave(1))|(1<<Slave(0)); //keo len muc cao de disable Slavers
+ 1c8:	88 b3       	in	r24, 0x18	; 24
+ 1ca:	87 60       	ori	r24, 0x07	; 7
+ 1cc:	88 bb       	out	0x18, r24	; 24
+}
+ 1ce:	08 95       	ret
+
+000001d0 <SPI_Transmit>:
+
+//Send data, 1 byte, qua SPI
+void SPI_Transmit(uint8_t i, uint8_t data){
+		cbi(ADDRESS_PORT, Slave(i));
+ 1d0:	98 b3       	in	r25, 0x18	; 24
+ 1d2:	21 e0       	ldi	r18, 0x01	; 1
+ 1d4:	30 e0       	ldi	r19, 0x00	; 0
+ 1d6:	02 c0       	rjmp	.+4      	; 0x1dc <SPI_Transmit+0xc>
+ 1d8:	22 0f       	add	r18, r18
+ 1da:	33 1f       	adc	r19, r19
+ 1dc:	8a 95       	dec	r24
+ 1de:	e2 f7       	brpl	.-8      	; 0x1d8 <SPI_Transmit+0x8>
+ 1e0:	82 2f       	mov	r24, r18
+ 1e2:	80 95       	com	r24
+ 1e4:	98 23       	and	r25, r24
+ 1e6:	98 bb       	out	0x18, r25	; 24
+        SPDR=data;
+ 1e8:	6f b9       	out	0x0f, r22	; 15
+        while (bit_is_clear(SPSR,SPIF)); //cho den khi bit SPIF duoc set, qua trinh truyen ket thuc
+ 1ea:	77 9b       	sbis	0x0e, 7	; 14
+ 1ec:	fe cf       	rjmp	.-4      	; 0x1ea <SPI_Transmit+0x1a>
+		sbi(ADDRESS_PORT, Slave(i));
+ 1ee:	88 b3       	in	r24, 0x18	; 24
+ 1f0:	28 2b       	or	r18, r24
+ 1f2:	28 bb       	out	0x18, r18	; 24
+}
+ 1f4:	08 95       	ret
+
+000001f6 <main>:
+
+//chuong trinh chinh
+int main(){
+ 1f6:	cf 92       	push	r12
+ 1f8:	df 92       	push	r13
+ 1fa:	ef 92       	push	r14
+ 1fc:	ff 92       	push	r15
+ 1fe:	0f 93       	push	r16
+ 200:	1f 93       	push	r17
+ 202:	cf 93       	push	r28
+ 204:	df 93       	push	r29
+	SPI_MasterInit(); //khoi dong SPI Master
+ 206:	0e 94 db 00 	call	0x1b6	; 0x1b6 <SPI_MasterInit>
+	#else
+		//round up by default
+		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
+	#endif
+
+	__builtin_avr_delay_cycles(__ticks_dc);
+ 20a:	87 ea       	ldi	r24, 0xA7	; 167
+ 20c:	91 e6       	ldi	r25, 0x61	; 97
+ 20e:	01 97       	sbiw	r24, 0x01	; 1
+ 210:	f1 f7       	brne	.-4      	; 0x20e <main+0x18>
+ 212:	00 c0       	rjmp	.+0      	; 0x214 <main+0x1e>
+ 214:	00 00       	nop
+	_delay_ms(100);	  //cho 1 khoang ngan de Slave kip khoi dong
+	while(1){
+		SPI_Transmit(0, wData[0]++); if (wData[0]>80)  wData[0]=0;   _delay_ms(10);	//to Salve 0
+ 216:	c0 e6       	ldi	r28, 0x60	; 96
+ 218:	d0 e0       	ldi	r29, 0x00	; 0
+		SPI_Transmit(1, wData[1]++); if (wData[1]>160) wData[1]=80;  _delay_ms(10);	//to Salve 1
+ 21a:	01 e6       	ldi	r16, 0x61	; 97
+ 21c:	10 e0       	ldi	r17, 0x00	; 0
+ 21e:	0f 2e       	mov	r0, r31
+ 220:	f0 e5       	ldi	r31, 0x50	; 80
+ 222:	df 2e       	mov	r13, r31
+ 224:	f0 2d       	mov	r31, r0
+		SPI_Transmit(2, wData[2]++); if (wData[2]>240) wData[2]=160; _delay_ms(10);	//to Salve 2	
+ 226:	0f 2e       	mov	r0, r31
+ 228:	f2 e6       	ldi	r31, 0x62	; 98
+ 22a:	ef 2e       	mov	r14, r31
+ 22c:	f0 e0       	ldi	r31, 0x00	; 0
+ 22e:	ff 2e       	mov	r15, r31
+ 230:	f0 2d       	mov	r31, r0
+ 232:	0f 2e       	mov	r0, r31
+ 234:	f0 ea       	ldi	r31, 0xA0	; 160
+ 236:	cf 2e       	mov	r12, r31
+ 238:	f0 2d       	mov	r31, r0
+//chuong trinh chinh
+int main(){
+	SPI_MasterInit(); //khoi dong SPI Master
+	_delay_ms(100);	  //cho 1 khoang ngan de Slave kip khoi dong
+	while(1){
+		SPI_Transmit(0, wData[0]++); if (wData[0]>80)  wData[0]=0;   _delay_ms(10);	//to Salve 0
+ 23a:	68 81       	ld	r22, Y
+ 23c:	86 2f       	mov	r24, r22
+ 23e:	8f 5f       	subi	r24, 0xFF	; 255
+ 240:	88 83       	st	Y, r24
+ 242:	80 e0       	ldi	r24, 0x00	; 0
+ 244:	0e 94 e8 00 	call	0x1d0	; 0x1d0 <SPI_Transmit>
+ 248:	88 81       	ld	r24, Y
+ 24a:	81 35       	cpi	r24, 0x51	; 81
+ 24c:	08 f0       	brcs	.+2      	; 0x250 <main+0x5a>
+ 24e:	18 82       	st	Y, r1
+ 250:	a3 ec       	ldi	r26, 0xC3	; 195
+ 252:	b9 e0       	ldi	r27, 0x09	; 9
+ 254:	11 97       	sbiw	r26, 0x01	; 1
+ 256:	f1 f7       	brne	.-4      	; 0x254 <main+0x5e>
+ 258:	00 c0       	rjmp	.+0      	; 0x25a <main+0x64>
+ 25a:	00 00       	nop
+		SPI_Transmit(1, wData[1]++); if (wData[1]>160) wData[1]=80;  _delay_ms(10);	//to Salve 1
+ 25c:	f8 01       	movw	r30, r16
+ 25e:	60 81       	ld	r22, Z
+ 260:	86 2f       	mov	r24, r22
+ 262:	8f 5f       	subi	r24, 0xFF	; 255
+ 264:	80 83       	st	Z, r24
+ 266:	81 e0       	ldi	r24, 0x01	; 1
+ 268:	0e 94 e8 00 	call	0x1d0	; 0x1d0 <SPI_Transmit>
+ 26c:	d8 01       	movw	r26, r16
+ 26e:	8c 91       	ld	r24, X
+ 270:	81 3a       	cpi	r24, 0xA1	; 161
+ 272:	08 f0       	brcs	.+2      	; 0x276 <main+0x80>
+ 274:	dc 92       	st	X, r13
+ 276:	e3 ec       	ldi	r30, 0xC3	; 195
+ 278:	f9 e0       	ldi	r31, 0x09	; 9
+ 27a:	31 97       	sbiw	r30, 0x01	; 1
+ 27c:	f1 f7       	brne	.-4      	; 0x27a <main+0x84>
+ 27e:	00 c0       	rjmp	.+0      	; 0x280 <main+0x8a>
+ 280:	00 00       	nop
+		SPI_Transmit(2, wData[2]++); if (wData[2]>240) wData[2]=160; _delay_ms(10);	//to Salve 2	
+ 282:	d7 01       	movw	r26, r14
+ 284:	6c 91       	ld	r22, X
+ 286:	86 2f       	mov	r24, r22
+ 288:	8f 5f       	subi	r24, 0xFF	; 255
+ 28a:	8c 93       	st	X, r24
+ 28c:	82 e0       	ldi	r24, 0x02	; 2
+ 28e:	0e 94 e8 00 	call	0x1d0	; 0x1d0 <SPI_Transmit>
+ 292:	f7 01       	movw	r30, r14
+ 294:	80 81       	ld	r24, Z
+ 296:	81 3f       	cpi	r24, 0xF1	; 241
+ 298:	08 f0       	brcs	.+2      	; 0x29c <main+0xa6>
+ 29a:	c0 82       	st	Z, r12
+ 29c:	83 ec       	ldi	r24, 0xC3	; 195
+ 29e:	99 e0       	ldi	r25, 0x09	; 9
+ 2a0:	01 97       	sbiw	r24, 0x01	; 1
+ 2a2:	f1 f7       	brne	.-4      	; 0x2a0 <main+0xaa>
+ 2a4:	00 c0       	rjmp	.+0      	; 0x2a6 <main+0xb0>
+ 2a6:	00 00       	nop
+ 2a8:	8f e9       	ldi	r24, 0x9F	; 159
+ 2aa:	96 e8       	ldi	r25, 0x86	; 134
+ 2ac:	a1 e0       	ldi	r26, 0x01	; 1
+ 2ae:	81 50       	subi	r24, 0x01	; 1
+ 2b0:	90 40       	sbci	r25, 0x00	; 0
+ 2b2:	a0 40       	sbci	r26, 0x00	; 0
+ 2b4:	e1 f7       	brne	.-8      	; 0x2ae <main+0xb8>
+ 2b6:	00 c0       	rjmp	.+0      	; 0x2b8 <main+0xc2>
+ 2b8:	00 00       	nop
+		_delay_ms(500);
+	}	
+ 2ba:	bf cf       	rjmp	.-130    	; 0x23a <main+0x44>
+
+000002bc <_exit>:
+ 2bc:	f8 94       	cli
+
+000002be <__stop_program>:
+ 2be:	ff cf       	rjmp	.-2      	; 0x2be <__stop_program>

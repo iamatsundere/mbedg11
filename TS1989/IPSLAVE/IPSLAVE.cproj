@@ -4,7 +4,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectVersion>5.1</ProjectVersion>
     <ToolchainName>com.Atmel.AVRGCC8</ToolchainName>
-    <ProjectGuid>{e487c32b-7e07-4cb5-8262-7585e8e0d324}</ProjectGuid>
+    <ProjectGuid>{c425a07b-70b1-4065-b27e-9d575bf5fda4}</ProjectGuid>
     <avrdevice>ATmega32</avrdevice>
     <avrdeviceseries>none</avrdeviceseries>
     <OutputType>Executable</OutputType>
@@ -12,9 +12,9 @@
     <OutputFileName>$(MSBuildProjectName)</OutputFileName>
     <OutputFileExtension>.elf</OutputFileExtension>
     <OutputDirectory>$(MSBuildProjectDirectory)\$(Configuration)</OutputDirectory>
-    <AssemblyName>IPS</AssemblyName>
-    <Name>IPS</Name>
-    <RootNamespace>IPS</RootNamespace>
+    <AssemblyName>IPSLAVE</AssemblyName>
+    <Name>IPSLAVE</Name>
+    <RootNamespace>IPSLAVE</RootNamespace>
     <ToolchainFlavour>Native</ToolchainFlavour>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
@@ -55,7 +55,7 @@
     </ToolchainSettings>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="IPS.c">
+    <Compile Include="IPSLAVE.c">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="myLCD.h">
