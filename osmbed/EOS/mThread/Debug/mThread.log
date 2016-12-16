@@ -1,0 +1,14 @@
+﻿  mThread.cpp
+mThread.cpp(1): warning C4627: '#include <iostream>': skipped when looking for precompiled header use
+  mThread.cpp(1): note: Add directive to 'stdafx.h' or rebuild precompiled header
+mThread.cpp(2): warning C4627: '#include <cstdlib>': skipped when looking for precompiled header use
+  mThread.cpp(2): note: Add directive to 'stdafx.h' or rebuild precompiled header
+d:\study\ky9\embedded_k11se\mbedg11\osmbed\eos\mthread\pthread.h(320): error C2011: 'timespec': 'struct' type redefinition
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.10240.0\ucrt\time.h(39): note: see declaration of 'timespec'
+mThread.cpp(13): error C2065: 'cout': undeclared identifier
+mThread.cpp(13): error C2065: 'endl': undeclared identifier
+mThread.cpp(23): error C2065: 'cout': undeclared identifier
+mThread.cpp(23): error C2065: 'endl': undeclared identifier
+mThread.cpp(27): error C2065: 'cout': undeclared identifier
+mThread.cpp(27): error C2065: 'endl': undeclared identifier
+mThread.cpp(28): error C3861: 'exit': identifier not found
