@@ -14,7 +14,7 @@ DWORD WINAPI writeFunc(void *params) {
 	char* st = (char*)params;
 	while (true)
 	{
-		if (turnT % 2 == 0)
+		if (x % 2 == 0)
 		{
 			printf("%s %d\n", st, x*x);
 			get_current_time();
@@ -31,11 +31,11 @@ DWORD WINAPI readFunc(void *params) {
 	char* st = (char*)params;
 	while (true)
 	{
-		if (turnT % 2 != 0)
+		if (x % 2 != 0)
 		{
 			printf("%s %d\n", st, x*x);
 			get_current_time();
-			turnT += 1;
+			x += 1;
 			Sleep(10);
 		}
 	}
@@ -46,8 +46,8 @@ DWORD WINAPI readFunc(void *params) {
 int main()
 {
 	DWORD doThreadId;
-	HANDLE t2 = CreateThread(NULL, 0, readFunc, (LPVOID)"RThread", 0, &doThreadId);
 	HANDLE t1 = CreateThread(NULL, 0, writeFunc, (LPVOID)"WThread", 0, &doThreadId);
+	HANDLE t2 = CreateThread(NULL, 0, readFunc, (LPVOID)"RThread", 0, &doThreadId);
 	system("PAUSE");
 }
 
