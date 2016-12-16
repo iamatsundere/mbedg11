@@ -1,0 +1,32 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# AvrStudio Solution File, Format Version 11.00
+Project("{54F91283-7BC4-4236-8FF9-10F437C3AD48}") = "TS1989", "TS1989\TS1989.cproj", "{D4961F4B-D3B6-4293-918C-465489B28539}"
+EndProject
+Project("{54F91283-7BC4-4236-8FF9-10F437C3AD48}") = "TLCD", "TLCD\TLCD.cproj", "{10B85CB3-C9B2-4287-B559-CBAC08AD811C}"
+EndProject
+Project("{54F91283-7BC4-4236-8FF9-10F437C3AD48}") = "DEL", "DEL\DEL.cproj", "{03020ACE-FAA3-4FD8-BBED-C3F098536356}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|AVR = Debug|AVR
+		Release|AVR = Release|AVR
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D4961F4B-D3B6-4293-918C-465489B28539}.Debug|AVR.ActiveCfg = Debug|AVR
+		{D4961F4B-D3B6-4293-918C-465489B28539}.Debug|AVR.Build.0 = Debug|AVR
+		{D4961F4B-D3B6-4293-918C-465489B28539}.Release|AVR.ActiveCfg = Release|AVR
+		{D4961F4B-D3B6-4293-918C-465489B28539}.Release|AVR.Build.0 = Release|AVR
+		{10B85CB3-C9B2-4287-B559-CBAC08AD811C}.Debug|AVR.ActiveCfg = Debug|AVR
+		{10B85CB3-C9B2-4287-B559-CBAC08AD811C}.Debug|AVR.Build.0 = Debug|AVR
+		{10B85CB3-C9B2-4287-B559-CBAC08AD811C}.Release|AVR.ActiveCfg = Release|AVR
+		{10B85CB3-C9B2-4287-B559-CBAC08AD811C}.Release|AVR.Build.0 = Release|AVR
+		{03020ACE-FAA3-4FD8-BBED-C3F098536356}.Debug|AVR.ActiveCfg = Debug|AVR
+		{03020ACE-FAA3-4FD8-BBED-C3F098536356}.Debug|AVR.Build.0 = Debug|AVR
+		{03020ACE-FAA3-4FD8-BBED-C3F098536356}.Release|AVR.ActiveCfg = Release|AVR
+		{03020ACE-FAA3-4FD8-BBED-C3F098536356}.Release|AVR.Build.0 = Release|AVR
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
