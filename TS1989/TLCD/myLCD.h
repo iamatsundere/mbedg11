@@ -80,7 +80,7 @@ void wait_LCD() {
 	while(1) {
 		cbi(CTRL,EN); //xóa EN
 		cbi(CTRL,RS);  //?ây là Instruction
-		sbi(CTRL,RW); //chi?u t? LCD ra ngoài
+		sbi(CTRL,RW); //Chieu tu LCD ra ngoai
 
 		DDR_DATA=0xFF; //h??ng data out
 		DATA_O=0xFF;    // g?i l?nh ??c BF
