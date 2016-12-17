@@ -16,6 +16,7 @@
     <Name>TWO</Name>
     <RootNamespace>TWO</RootNamespace>
     <ToolchainFlavour>Native</ToolchainFlavour>
+    <AsfVersion>2.11.1</AsfVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
     <ToolchainSettings>

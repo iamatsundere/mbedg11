@@ -351,10 +351,10 @@ LOAD d:/program files/atmel/avr studio 5.1/extensions/atmel/avrgcc/3.3.1.27/avrt
  *(.debug_frame)
  .debug_frame   0x00000000       0xd0 TLCD.o
 
-.debug_str      0x00000000      0x11c
+.debug_str      0x00000000      0x124
  *(.debug_str)
- .debug_str     0x00000000      0x11c TLCD.o
-                                0x155 (size before relaxing)
+ .debug_str     0x00000000      0x124 TLCD.o
+                                0x15d (size before relaxing)
 
 .debug_loc      0x00000000      0x1b1
  *(.debug_loc)

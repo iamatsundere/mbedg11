@@ -23,13 +23,13 @@ Idx Name          Size      VMA       LMA       File off  Algn
                   CONTENTS, READONLY, DEBUGGING
   9 .debug_frame  000000d0  00000000  00000000  000013f8  2**2
                   CONTENTS, READONLY, DEBUGGING
- 10 .debug_str    0000011c  00000000  00000000  000014c8  2**0
+ 10 .debug_str    00000124  00000000  00000000  000014c8  2**0
                   CONTENTS, READONLY, DEBUGGING
- 11 .debug_loc    000001b1  00000000  00000000  000015e4  2**0
+ 11 .debug_loc    000001b1  00000000  00000000  000015ec  2**0
                   CONTENTS, READONLY, DEBUGGING
- 12 .debug_pubtypes 0000002b  00000000  00000000  00001795  2**0
+ 12 .debug_pubtypes 0000002b  00000000  00000000  0000179d  2**0
                   CONTENTS, READONLY, DEBUGGING
- 13 .debug_ranges 00000018  00000000  00000000  000017c0  2**0
+ 13 .debug_ranges 00000018  00000000  00000000  000017c8  2**0
                   CONTENTS, READONLY, DEBUGGING
 
 Disassembly of section .text:
@@ -110,107 +110,107 @@ int stringlen(char* s){
 #define DDR_DATA             DDRD
 */
 
-char Read2Nib(){
-       char HNib, LNib;
-       DATA_O |=0xF0;
-  9e:	88 b3       	in	r24, 0x18	; 24
+char Read2Nib() {
+	char HNib, LNib;
+	DATA_O |=0xF0;
+  9e:	8b b3       	in	r24, 0x1b	; 27
   a0:	80 6f       	ori	r24, 0xF0	; 240
-  a2:	88 bb       	out	0x18, r24	; 24
+  a2:	8b bb       	out	0x1b, r24	; 27
 
-       sbi(CTRL,EN); //enable 
-  a4:	c2 9a       	sbi	0x18, 2	; 24
-       DDR_DATA &=0x0F; //set 4 bits cao cua PORT DATA lam input 
-  a6:	87 b3       	in	r24, 0x17	; 23
+	sbi(CTRL,EN); //enable
+  a4:	da 9a       	sbi	0x1b, 2	; 27
+	DDR_DATA &=0x0F; //set 4 bits cao cua PORT DATA lam input
+  a6:	8a b3       	in	r24, 0x1a	; 26
   a8:	8f 70       	andi	r24, 0x0F	; 15
-  aa:	87 bb       	out	0x17, r24	; 23
-       HNib=DATA_I & 0xF0;
-  ac:	86 b3       	in	r24, 0x16	; 22
-       cbi(CTRL,EN); //disable
-  ae:	c2 98       	cbi	0x18, 2	; 24
+  aa:	8a bb       	out	0x1a, r24	; 26
+	HNib=DATA_I & 0xF0;
+  ac:	89 b3       	in	r24, 0x19	; 25
+	cbi(CTRL,EN); //disable
+  ae:	da 98       	cbi	0x1b, 2	; 27
 
-       sbi(CTRL,EN); //enable
-  b0:	c2 9a       	sbi	0x18, 2	; 24
-       LNib = DATA_I & 0xF0;
-  b2:	96 b3       	in	r25, 0x16	; 22
-       cbi(CTRL,EN); //disable
-  b4:	c2 98       	cbi	0x18, 2	; 24
-       LNib>>=4;
+	sbi(CTRL,EN); //enable
+  b0:	da 9a       	sbi	0x1b, 2	; 27
+	LNib = DATA_I & 0xF0;
+  b2:	99 b3       	in	r25, 0x19	; 25
+	cbi(CTRL,EN); //disable
+  b4:	da 98       	cbi	0x1b, 2	; 27
+	LNib>>=4;
   b6:	92 95       	swap	r25
   b8:	9f 70       	andi	r25, 0x0F	; 15
-       char HNib, LNib;
-       DATA_O |=0xF0;
+	char HNib, LNib;
+	DATA_O |=0xF0;
 
-       sbi(CTRL,EN); //enable 
-       DDR_DATA &=0x0F; //set 4 bits cao cua PORT DATA lam input 
-       HNib=DATA_I & 0xF0;
+	sbi(CTRL,EN); //enable
+	DDR_DATA &=0x0F; //set 4 bits cao cua PORT DATA lam input
+	HNib=DATA_I & 0xF0;
   ba:	80 7f       	andi	r24, 0xF0	; 240
-       sbi(CTRL,EN); //enable
-       LNib = DATA_I & 0xF0;
-       cbi(CTRL,EN); //disable
-       LNib>>=4;
-       return (HNib|LNib);
+	sbi(CTRL,EN); //enable
+	LNib = DATA_I & 0xF0;
+	cbi(CTRL,EN); //disable
+	LNib>>=4;
+	return (HNib|LNib);
 }
   bc:	89 2b       	or	r24, r25
   be:	08 95       	ret
 
 000000c0 <Write2Nib>:
 
-void Write2Nib(uint8_t chr){
-       uint8_t HNib, LNib, temp_data; 
-       temp_data=DATA_O & 0x0F; //doc 4 bit thap cua DATA_O de mask,
-  c0:	98 b3       	in	r25, 0x18	; 24
+void Write2Nib(uint8_t chr) {
+	uint8_t HNib, LNib, temp_data;
+	temp_data=DATA_O & 0x0F; //doc 4 bit thap cua DATA_O de mask,
+  c0:	9b b3       	in	r25, 0x1b	; 27
   c2:	9f 70       	andi	r25, 0x0F	; 15
 
-       HNib=chr & 0xF0;
+	HNib=chr & 0xF0;
   c4:	28 2f       	mov	r18, r24
   c6:	20 7f       	andi	r18, 0xF0	; 240
-       LNib=(chr<<4) & 0xF0; 
+	LNib=(chr<<4) & 0xF0;
 
-       DATA_O =(HNib |temp_data); 
+	DATA_O =(HNib |temp_data);
   c8:	29 2b       	or	r18, r25
-  ca:	28 bb       	out	0x18, r18	; 24
-       sbi(CTRL,EN); //enable
-  cc:	c2 9a       	sbi	0x18, 2	; 24
-       cbi(CTRL,EN); //disable 
-  ce:	c2 98       	cbi	0x18, 2	; 24
-void Write2Nib(uint8_t chr){
-       uint8_t HNib, LNib, temp_data; 
-       temp_data=DATA_O & 0x0F; //doc 4 bit thap cua DATA_O de mask,
+  ca:	2b bb       	out	0x1b, r18	; 27
+	sbi(CTRL,EN); //enable
+  cc:	da 9a       	sbi	0x1b, 2	; 27
+	cbi(CTRL,EN); //disable
+  ce:	da 98       	cbi	0x1b, 2	; 27
+void Write2Nib(uint8_t chr) {
+	uint8_t HNib, LNib, temp_data;
+	temp_data=DATA_O & 0x0F; //doc 4 bit thap cua DATA_O de mask,
 
-       HNib=chr & 0xF0;
-       LNib=(chr<<4) & 0xF0; 
+	HNib=chr & 0xF0;
+	LNib=(chr<<4) & 0xF0;
   d0:	82 95       	swap	r24
   d2:	80 7f       	andi	r24, 0xF0	; 240
 
-       DATA_O =(HNib |temp_data); 
-       sbi(CTRL,EN); //enable
-       cbi(CTRL,EN); //disable 
+	DATA_O =(HNib |temp_data);
+	sbi(CTRL,EN); //enable
+	cbi(CTRL,EN); //disable
 
-       DATA_O =(LNib|temp_data);  
+	DATA_O =(LNib|temp_data);
   d4:	98 2b       	or	r25, r24
-  d6:	98 bb       	out	0x18, r25	; 24
-       sbi(CTRL,EN); //enable
-  d8:	c2 9a       	sbi	0x18, 2	; 24
-       cbi(CTRL,EN); //disable
-  da:	c2 98       	cbi	0x18, 2	; 24
+  d6:	9b bb       	out	0x1b, r25	; 27
+	sbi(CTRL,EN); //enable
+  d8:	da 9a       	sbi	0x1b, 2	; 27
+	cbi(CTRL,EN); //disable
+  da:	da 98       	cbi	0x1b, 2	; 27
 }
   dc:	08 95       	ret
 
 000000de <Write8Bit>:
 
-void Write8Bit(uint8_t chr){
-       DATA_O=chr;   //out 8 bits to DATA Line
-  de:	88 bb       	out	0x18, r24	; 24
-       sbi(CTRL,EN); //enable
-  e0:	c2 9a       	sbi	0x18, 2	; 24
-       cbi(CTRL,EN); //disable
-  e2:	c2 98       	cbi	0x18, 2	; 24
+void Write8Bit(uint8_t chr) {
+	DATA_O=chr;   //out 8 bits to DATA Line
+  de:	8b bb       	out	0x1b, r24	; 27
+	sbi(CTRL,EN); //enable
+  e0:	da 9a       	sbi	0x1b, 2	; 27
+	cbi(CTRL,EN); //disable
+  e2:	da 98       	cbi	0x1b, 2	; 27
 }
   e4:	08 95       	ret
 
 000000e6 <wait_LCD>:
 
-void wait_LCD(){
+void wait_LCD() {
   e6:	0f 93       	push	r16
   e8:	1f 93       	push	r17
   ea:	df 93       	push	r29
@@ -218,40 +218,40 @@ void wait_LCD(){
   ee:	0f 92       	push	r0
   f0:	cd b7       	in	r28, 0x3d	; 61
   f2:	de b7       	in	r29, 0x3e	; 62
-              char temp_val;
-              while(1){
-                     cbi(CTRL,RS); //RS=0, the following data is COMMAND 
-                     sbi(CTRL,RW); //LCD -> AVR
-                     temp_val=Read2Nib();
-                     if (bit_is_clear(temp_val,7)) break;
+	char temp_val;
+	while(1) {
+		cbi(CTRL,RS); //RS=0, the following data is COMMAND
+		sbi(CTRL,RW); //LCD -> AVR
+		temp_val=Read2Nib();
+		if (bit_is_clear(temp_val,7)) break;
   f4:	8e 01       	movw	r16, r28
   f6:	0f 5f       	subi	r16, 0xFF	; 255
   f8:	1f 4f       	sbci	r17, 0xFF	; 255
-              cbi(CTRL,RW); //ready for next step 
-              DDR_DATA=0xFF; //Ready to Out
-       #else
-              char temp_val;
-              while(1){
-                     cbi(CTRL,RS); //RS=0, the following data is COMMAND 
-  fa:	c0 98       	cbi	0x18, 0	; 24
-                     sbi(CTRL,RW); //LCD -> AVR
-  fc:	c1 9a       	sbi	0x18, 1	; 24
-                     temp_val=Read2Nib();
+	cbi(CTRL,RW); //ready for next step
+	DDR_DATA=0xFF; //Ready to Out
+#else
+	char temp_val;
+	while(1) {
+		cbi(CTRL,RS); //RS=0, the following data is COMMAND
+  fa:	d8 98       	cbi	0x1b, 0	; 27
+		sbi(CTRL,RW); //LCD -> AVR
+  fc:	d9 9a       	sbi	0x1b, 1	; 27
+		temp_val=Read2Nib();
   fe:	0e 94 4f 00 	call	0x9e	; 0x9e <Read2Nib>
  102:	89 83       	std	Y+1, r24	; 0x01
-                     if (bit_is_clear(temp_val,7)) break;
+		if (bit_is_clear(temp_val,7)) break;
  104:	f8 01       	movw	r30, r16
  106:	80 81       	ld	r24, Z
  108:	88 23       	and	r24, r24
  10a:	bc f3       	brlt	.-18     	; 0xfa <wait_LCD+0x14>
-              }
-              cbi(CTRL, RW); //ready for next step 
- 10c:	c1 98       	cbi	0x18, 1	; 24
-              DDR_DATA=0xFF;//Ready to Out 
+	}
+	cbi(CTRL, RW); //ready for next step
+ 10c:	d9 98       	cbi	0x1b, 1	; 27
+	DDR_DATA=0xFF;//Ready to Out
  10e:	8f ef       	ldi	r24, 0xFF	; 255
- 110:	87 bb       	out	0x17, r24	; 23
-       #endif
-       //_delay_ms(1); 
+ 110:	8a bb       	out	0x1a, r24	; 26
+#endif
+	//_delay_ms(1);
 }
  112:	0f 90       	pop	r0
  114:	cf 91       	pop	r28
@@ -262,152 +262,152 @@ void wait_LCD(){
 
 0000011e <init_LCD>:
 
-void init_LCD(){
-       DDR_CTRL=0xFF;
+void init_LCD() {
+	DDR_CTRL=0xFF;
  11e:	8f ef       	ldi	r24, 0xFF	; 255
- 120:	87 bb       	out	0x17, r24	; 23
-       DDR_DATA=0xFF;
- 122:	87 bb       	out	0x17, r24	; 23
+ 120:	8a bb       	out	0x1a, r24	; 26
+	DDR_DATA=0xFF;
+ 122:	8a bb       	out	0x1a, r24	; 26
 //Function set------------------------------------------------------------------------------
-       cbi(CTRL,RS);   // the following data is COMMAND
- 124:	c0 98       	cbi	0x18, 0	; 24
-       cbi(CTRL, RW); // AVR->LCD
- 126:	c1 98       	cbi	0x18, 1	; 24
-       cbi(CTRL, EN);
- 128:	c2 98       	cbi	0x18, 2	; 24
-       #ifdef LCD8BIT 
-              Write8Bit(0x38);
-             wait_LCD();
-       #else
-             sbi(CTRL,EN); //enable
- 12a:	c2 9a       	sbi	0x18, 2	; 24
-              sbi(DATA_O, 5); 
- 12c:	c5 9a       	sbi	0x18, 5	; 24
-              cbi(CTRL,EN); //disable
- 12e:	c2 98       	cbi	0x18, 2	; 24
-              wait_LCD();  
+	cbi(CTRL,RS);   // the following data is COMMAND
+ 124:	d8 98       	cbi	0x1b, 0	; 27
+	cbi(CTRL, RW); // AVR->LCD
+ 126:	d9 98       	cbi	0x1b, 1	; 27
+	cbi(CTRL, EN);
+ 128:	da 98       	cbi	0x1b, 2	; 27
+#ifdef LCD8BIT
+	Write8Bit(0x38);
+	wait_LCD();
+#else
+	sbi(CTRL,EN); //enable
+ 12a:	da 9a       	sbi	0x1b, 2	; 27
+	sbi(DATA_O, 5);
+ 12c:	dd 9a       	sbi	0x1b, 5	; 27
+	cbi(CTRL,EN); //disable
+ 12e:	da 98       	cbi	0x1b, 2	; 27
+	wait_LCD();
  130:	0e 94 73 00 	call	0xe6	; 0xe6 <wait_LCD>
-              Write2Nib(0x28);//4 bit mode, 2 line, 5x8 font
+	Write2Nib(0x28);//4 bit mode, 2 line, 5x8 font
  134:	88 e2       	ldi	r24, 0x28	; 40
  136:	0e 94 60 00 	call	0xc0	; 0xc0 <Write2Nib>
-              wait_LCD(); 
+	wait_LCD();
  13a:	0e 94 73 00 	call	0xe6	; 0xe6 <wait_LCD>
-       #endif
-//Display control------------------------------------------------------------------------- 
-       cbi(CTRL,RS); // the following data is COMMAND 
- 13e:	c0 98       	cbi	0x18, 0	; 24
-       #ifdef LCD8BIT 
-              Write8Bit(0x0E);
-              wait_LCD();
-       #else
-              Write2Nib(0x0E);
+#endif
+//Display control-------------------------------------------------------------------------
+	cbi(CTRL,RS); // the following data is COMMAND
+ 13e:	d8 98       	cbi	0x1b, 0	; 27
+#ifdef LCD8BIT
+	Write8Bit(0x0E);
+	wait_LCD();
+#else
+	Write2Nib(0x0E);
  140:	8e e0       	ldi	r24, 0x0E	; 14
  142:	0e 94 60 00 	call	0xc0	; 0xc0 <Write2Nib>
-              wait_LCD();   
+	wait_LCD();
  146:	0e 94 73 00 	call	0xe6	; 0xe6 <wait_LCD>
-       #endif
+#endif
 //Entry mode set------------------------------------------------------------------------
-       cbi(CTRL,RS); // the following data is COMMAND 
- 14a:	c0 98       	cbi	0x18, 0	; 24
-       #ifdef LCD8BIT
-              Write8Bit(0x06);
-              wait_LCD();
-       #else
-              Write2Nib(0x06);
+	cbi(CTRL,RS); // the following data is COMMAND
+ 14a:	d8 98       	cbi	0x1b, 0	; 27
+#ifdef LCD8BIT
+	Write8Bit(0x06);
+	wait_LCD();
+#else
+	Write2Nib(0x06);
  14c:	86 e0       	ldi	r24, 0x06	; 6
  14e:	0e 94 60 00 	call	0xc0	; 0xc0 <Write2Nib>
-              wait_LCD();
+	wait_LCD();
  152:	0e 94 73 00 	call	0xe6	; 0xe6 <wait_LCD>
-       #endif
+#endif
 }
  156:	08 95       	ret
 
 00000158 <home_LCD>:
 
-void home_LCD(){
-       cbi(CTRL,RS); // the following data is COMMAND 
- 158:	c0 98       	cbi	0x18, 0	; 24
-       #ifdef LCD8BIT 
-              Write8Bit(0x02);
-              wait_LCD(); 
-       #else
-              Write2Nib(0x02);
+void home_LCD() {
+	cbi(CTRL,RS); // the following data is COMMAND
+ 158:	d8 98       	cbi	0x1b, 0	; 27
+#ifdef LCD8BIT
+	Write8Bit(0x02);
+	wait_LCD();
+#else
+	Write2Nib(0x02);
  15a:	82 e0       	ldi	r24, 0x02	; 2
  15c:	0e 94 60 00 	call	0xc0	; 0xc0 <Write2Nib>
-              wait_LCD();  
+	wait_LCD();
  160:	0e 94 73 00 	call	0xe6	; 0xe6 <wait_LCD>
-       #endif 
+#endif
 }
  164:	08 95       	ret
 
 00000166 <move_LCD>:
-void move_LCD(uint8_t y,uint8_t x){
-       uint8_t Ad;
-       Ad=64*(y-1)+(x-1)+0x80; // tính mã l?nh
-       cbi(CTRL,RS); // the following data is COMMAND
- 166:	c0 98       	cbi	0x18, 0	; 24
-              wait_LCD();  
-       #endif 
+void move_LCD(uint8_t y,uint8_t x) {
+	uint8_t Ad;
+	Ad=64*(y-1)+(x-1)+0x80; // tính mã l?nh
+	cbi(CTRL,RS); // the following data is COMMAND
+ 166:	d8 98       	cbi	0x1b, 0	; 27
+	wait_LCD();
+#endif
 }
-void move_LCD(uint8_t y,uint8_t x){
-       uint8_t Ad;
-       Ad=64*(y-1)+(x-1)+0x80; // tính mã l?nh
+void move_LCD(uint8_t y,uint8_t x) {
+	uint8_t Ad;
+	Ad=64*(y-1)+(x-1)+0x80; // tính mã l?nh
  168:	82 95       	swap	r24
  16a:	88 0f       	add	r24, r24
  16c:	88 0f       	add	r24, r24
  16e:	80 7c       	andi	r24, 0xC0	; 192
  170:	86 0f       	add	r24, r22
-       cbi(CTRL,RS); // the following data is COMMAND
-       #ifdef LCD8BIT 
-              Write8Bit(Ad);
-              wait_LCD();
-       #else
-              Write2Nib(Ad);
+	cbi(CTRL,RS); // the following data is COMMAND
+#ifdef LCD8BIT
+	Write8Bit(Ad);
+	wait_LCD();
+#else
+	Write2Nib(Ad);
  172:	81 5c       	subi	r24, 0xC1	; 193
  174:	0e 94 60 00 	call	0xc0	; 0xc0 <Write2Nib>
-              wait_LCD();
+	wait_LCD();
  178:	0e 94 73 00 	call	0xe6	; 0xe6 <wait_LCD>
-       #endif 
+#endif
 }
  17c:	08 95       	ret
 
 0000017e <clr_LCD>:
 
-void clr_LCD(){ //xóa toàn b? LCD
-       cbi(CTRL,RS); //RS=0 mean the following data is COMMAND (not normal DATA)
- 17e:	c0 98       	cbi	0x18, 0	; 24
-       #ifdef LCD8BIT 
-              Write8Bit(0x01);
-              wait_LCD(); 
-       #else
-              Write2Nib(0x01);
+void clr_LCD() { //xóa toàn b? LCD
+	cbi(CTRL,RS); //RS=0 mean the following data is COMMAND (not normal DATA)
+ 17e:	d8 98       	cbi	0x1b, 0	; 27
+#ifdef LCD8BIT
+	Write8Bit(0x01);
+	wait_LCD();
+#else
+	Write2Nib(0x01);
  180:	81 e0       	ldi	r24, 0x01	; 1
  182:	0e 94 60 00 	call	0xc0	; 0xc0 <Write2Nib>
-              wait_LCD();  
+	wait_LCD();
  186:	0e 94 73 00 	call	0xe6	; 0xe6 <wait_LCD>
-       #endif 
+#endif
 }
  18a:	08 95       	ret
 
 0000018c <putChar_LCD>:
-void putChar_LCD(uint8_t chr){ //hi?n th? 1 ký t? chr lên LCD
-       sbi(CTRL,RS); //this is a normal DATA 
- 18c:	c0 9a       	sbi	0x18, 0	; 24
-       #ifdef LCD8BIT 
-              Write8Bit(chr);
-              wait_LCD(); 
-       #else
-              Write2Nib(chr);
+void putChar_LCD(uint8_t chr) { //hi?n th? 1 ký t? chr lên LCD
+	sbi(CTRL,RS); //this is a normal DATA
+ 18c:	d8 9a       	sbi	0x1b, 0	; 27
+#ifdef LCD8BIT
+	Write8Bit(chr);
+	wait_LCD();
+#else
+	Write2Nib(chr);
  18e:	0e 94 60 00 	call	0xc0	; 0xc0 <Write2Nib>
-              wait_LCD(); 
+	wait_LCD();
  192:	0e 94 73 00 	call	0xe6	; 0xe6 <wait_LCD>
-       #endif 
+#endif
 }
  196:	08 95       	ret
 
 00000198 <print_LCD>:
 
-void print_LCD(char* str){ //Hi?n th? 1 chu?i ký t?
+void print_LCD(char* str) { //Hi?n th? 1 chu?i ký t?
  198:	cf 92       	push	r12
  19a:	df 92       	push	r13
  19c:	ef 92       	push	r14
@@ -418,10 +418,10 @@ void print_LCD(char* str){ //Hi?n th? 1 chu?i ký t?
  1a6:	df 93       	push	r29
  1a8:	d8 2e       	mov	r13, r24
  1aa:	c9 2e       	mov	r12, r25
-       unsigned char i;
-	   unsigned char max=16;		 
-	   
-	   unsigned char len=strlen(str);
+	unsigned char i;
+	unsigned char max=16;
+
+	unsigned char len=strlen(str);
  1ac:	e8 2f       	mov	r30, r24
  1ae:	f9 2f       	mov	r31, r25
  1b0:	df 01       	movw	r26, r30
@@ -430,16 +430,14 @@ void print_LCD(char* str){ //Hi?n th? 1 chu?i ký t?
  1b6:	e9 f7       	brne	.-6      	; 0x1b2 <print_LCD+0x1a>
  1b8:	11 97       	sbiw	r26, 0x01	; 1
  1ba:	a8 1b       	sub	r26, r24
-	   
-	   if (len>=max)
+
+	if (len>=max) {
  1bc:	a0 31       	cpi	r26, 0x10	; 16
  1be:	70 f4       	brcc	.+28     	; 0x1dc <print_LCD+0x44>
-	   for(int j=0;j<len;j++)  
-	   putChar_LCD(str[j]); 
-	   }
-	   else
-	   {
-		   for(int k=0;k<(max-len)/2;k++)
+		for(int j=0; j<len; j++)
+			putChar_LCD(str[j]);
+	} else {
+		for(int k=0; k<(max-len)/2; k++)
  1c0:	ea 2e       	mov	r14, r26
  1c2:	ff 24       	eor	r15, r15
  1c4:	c0 e1       	ldi	r28, 0x10	; 16
@@ -454,12 +452,12 @@ void print_LCD(char* str){ //Hi?n th? 1 chu?i ký t?
  1d6:	1d 06       	cpc	r1, r29
  1d8:	a4 f0       	brlt	.+40     	; 0x202 <print_LCD+0x6a>
  1da:	1d c0       	rjmp	.+58     	; 0x216 <print_LCD+0x7e>
-	   
-	   unsigned char len=strlen(str);
-	   
-	   if (len>=max)
-	   {
-	   for(int j=0;j<len;j++)  
+	unsigned char max=16;
+
+	unsigned char len=strlen(str);
+
+	if (len>=max) {
+		for(int j=0; j<len; j++)
  1dc:	ea 2e       	mov	r14, r26
  1de:	ff 24       	eor	r15, r15
  1e0:	1e 14       	cp	r1, r14
@@ -469,45 +467,43 @@ void print_LCD(char* str){ //Hi?n th? 1 chu?i ký t?
  1e8:	1c 2d       	mov	r17, r12
  1ea:	c0 e0       	ldi	r28, 0x00	; 0
  1ec:	d0 e0       	ldi	r29, 0x00	; 0
-	   putChar_LCD(str[j]); 
+			putChar_LCD(str[j]);
  1ee:	f8 01       	movw	r30, r16
  1f0:	81 91       	ld	r24, Z+
  1f2:	8f 01       	movw	r16, r30
  1f4:	0e 94 c6 00 	call	0x18c	; 0x18c <putChar_LCD>
-	   
-	   unsigned char len=strlen(str);
-	   
-	   if (len>=max)
-	   {
-	   for(int j=0;j<len;j++)  
+	unsigned char max=16;
+
+	unsigned char len=strlen(str);
+
+	if (len>=max) {
+		for(int j=0; j<len; j++)
  1f8:	21 96       	adiw	r28, 0x01	; 1
  1fa:	ce 15       	cp	r28, r14
  1fc:	df 05       	cpc	r29, r15
  1fe:	bc f3       	brlt	.-18     	; 0x1ee <print_LCD+0x56>
  200:	1a c0       	rjmp	.+52     	; 0x236 <print_LCD+0x9e>
-	   putChar_LCD(str[j]); 
-	   }
-	   else
-	   {
-		   for(int k=0;k<(max-len)/2;k++)
+			putChar_LCD(str[j]);
+	} else {
+		for(int k=0; k<(max-len)/2; k++)
  202:	00 e0       	ldi	r16, 0x00	; 0
  204:	10 e0       	ldi	r17, 0x00	; 0
-		   putChar_LCD(' ');
+			putChar_LCD(' ');
  206:	80 e2       	ldi	r24, 0x20	; 32
  208:	0e 94 c6 00 	call	0x18c	; 0x18c <putChar_LCD>
-	   for(int j=0;j<len;j++)  
-	   putChar_LCD(str[j]); 
-	   }
-	   else
-	   {
-		   for(int k=0;k<(max-len)/2;k++)
+
+	if (len>=max) {
+		for(int j=0; j<len; j++)
+			putChar_LCD(str[j]);
+	} else {
+		for(int k=0; k<(max-len)/2; k++)
  20c:	0f 5f       	subi	r16, 0xFF	; 255
  20e:	1f 4f       	sbci	r17, 0xFF	; 255
  210:	0c 17       	cp	r16, r28
  212:	1d 07       	cpc	r17, r29
  214:	c4 f3       	brlt	.-16     	; 0x206 <print_LCD+0x6e>
-		   putChar_LCD(' ');
-		    for(int j=0;j<len;j++)  
+			putChar_LCD(' ');
+		for(int j=0; j<len; j++)
  216:	1e 14       	cp	r1, r14
  218:	1f 04       	cpc	r1, r15
  21a:	6c f4       	brge	.+26     	; 0x236 <print_LCD+0x9e>
@@ -515,23 +511,24 @@ void print_LCD(char* str){ //Hi?n th? 1 chu?i ký t?
  21e:	1c 2d       	mov	r17, r12
  220:	c0 e0       	ldi	r28, 0x00	; 0
  222:	d0 e0       	ldi	r29, 0x00	; 0
-	   putChar_LCD(str[j]); 
+			putChar_LCD(str[j]);
  224:	f8 01       	movw	r30, r16
  226:	81 91       	ld	r24, Z+
  228:	8f 01       	movw	r16, r30
  22a:	0e 94 c6 00 	call	0x18c	; 0x18c <putChar_LCD>
-	   }
-	   else
-	   {
-		   for(int k=0;k<(max-len)/2;k++)
-		   putChar_LCD(' ');
-		    for(int j=0;j<len;j++)  
+		for(int j=0; j<len; j++)
+			putChar_LCD(str[j]);
+	} else {
+		for(int k=0; k<(max-len)/2; k++)
+			putChar_LCD(' ');
+		for(int j=0; j<len; j++)
  22e:	21 96       	adiw	r28, 0x01	; 1
  230:	ce 15       	cp	r28, r14
  232:	df 05       	cpc	r29, r15
  234:	bc f3       	brlt	.-18     	; 0x224 <print_LCD+0x8c>
-	   putChar_LCD(str[j]); 
-	   }
+			putChar_LCD(str[j]);
+	}
+}
  236:	df 91       	pop	r29
  238:	cf 91       	pop	r28
  23a:	1f 91       	pop	r17
@@ -554,7 +551,7 @@ int main() {
  24c:	0e 94 bf 00 	call	0x17e	; 0x17e <clr_LCD>
 	//putChar_LCD(' '); //ghi 1 kho?ng tr?ng
 	//putChar_LCD(' '); //ghi 1 kho?ng tr?ng
-	//putChar_LCD('D'); //Hi?n th? kýt 
+	//putChar_LCD('D'); //Hi?n th? kýt
 	print_LCD("123456789"); //hi?n th? chu?i th? 2
  250:	80 e6       	ldi	r24, 0x60	; 96
  252:	90 e0       	ldi	r25, 0x00	; 0
