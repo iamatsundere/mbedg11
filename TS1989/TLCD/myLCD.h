@@ -14,8 +14,8 @@
 //needed as well (e. g. in an SBI() instruction), so the definitions cannot usefully be made as byte 
 //values in the first place.
 
-#define sbi(sfr,bit) sfr|=_BV(bit) //turn on bit number in sfr (port...)
-#define cbi(sfr,bit) sfr&=~_BV(bit) //turn of bit number in sfr (port...)
+#define sbi(sfr,bit) sfr|=_BV(bit) //turn on bit number in sfr (port...) ex: porta |= 0x80 means turn on bit 7
+#define cbi(sfr,bit) sfr&=~_BV(bit) //turn of bit number in sfr (port...) ex: porta &= ~0x80 means turn off bit 7
 #define EN                            2
 #define RW                           1
 #define RS                            0
@@ -36,8 +36,13 @@ char Read2Nib() {
 	char HNib, LNib;
 	DATA_O |=0xF0;
 
-	sbi(CTRL,EN); //enable
+	//có th? ??t dòng code này ? ?ây
 	DDR_DATA &=0x0F; //set 4 bits cao cua PORT DATA lam input
+	sbi(CTRL,EN); //enable
+	//sau dòng này thì LCD s? ??y d? li?u ra các chân data, trong khi các chân này trên c?a AVR 
+	//v?n còn ? h??ng output (vì các nhi?m v? tr??c ?ó), nên xung ??t d? li?u có th? x?y ra
+	////c?ng có th? ??t dòng code trên ? ?ây
+	//DDR_DATA &=0x0F; 
 	HNib=DATA_I & 0xF0;
 	cbi(CTRL,EN); //disable
 
