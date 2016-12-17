@@ -37,6 +37,7 @@ DWORD WINAPI readFunc(void *params) {
 			get_current_time();
 			x += 1;
 			Sleep(10);
+			turnT += 1;
 		}
 	}
 	return 0;

@@ -15,8 +15,6 @@ Project("{54F91283-7BC4-4236-8FF9-10F437C3AD48}") = "TWO", "TWO\TWO.cproj", "{D1
 EndProject
 Project("{54F91283-7BC4-4236-8FF9-10F437C3AD48}") = "TWOO", "TWOO\TWOO.cproj", "{3D4CC688-45C9-424D-9C39-6F5B1D52DD7F}"
 EndProject
-Project("{54F91283-7BC4-4236-8FF9-10F437C3AD48}") = "TWI", "TWI\TWI.cproj", "{D6257F75-04F0-4DD2-9A18-5F12EC205C2F}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|AVR = Debug|AVR
@@ -50,10 +48,6 @@ Global
 		{3D4CC688-45C9-424D-9C39-6F5B1D52DD7F}.Debug|AVR.Build.0 = Debug|AVR
 		{3D4CC688-45C9-424D-9C39-6F5B1D52DD7F}.Release|AVR.ActiveCfg = Release|AVR
 		{3D4CC688-45C9-424D-9C39-6F5B1D52DD7F}.Release|AVR.Build.0 = Release|AVR
-		{D6257F75-04F0-4DD2-9A18-5F12EC205C2F}.Debug|AVR.ActiveCfg = Debug|AVR
-		{D6257F75-04F0-4DD2-9A18-5F12EC205C2F}.Debug|AVR.Build.0 = Debug|AVR
-		{D6257F75-04F0-4DD2-9A18-5F12EC205C2F}.Release|AVR.ActiveCfg = Release|AVR
-		{D6257F75-04F0-4DD2-9A18-5F12EC205C2F}.Release|AVR.Build.0 = Release|AVR
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
