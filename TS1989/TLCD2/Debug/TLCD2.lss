@@ -3,27 +3,27 @@ TLCD2.elf:     file format elf32-avr
 
 Sections:
 Idx Name          Size      VMA       LMA       File off  Algn
-  0 .text         00000160  00000000  00000000  00000054  2**1
+  0 .text         000000e0  00000000  00000000  00000054  2**1
                   CONTENTS, ALLOC, LOAD, READONLY, CODE
-  1 .stab         000006cc  00000000  00000000  000001b4  2**2
+  1 .stab         000006cc  00000000  00000000  00000134  2**2
                   CONTENTS, READONLY, DEBUGGING
-  2 .stabstr      00000090  00000000  00000000  00000880  2**0
+  2 .stabstr      00000090  00000000  00000000  00000800  2**0
                   CONTENTS, READONLY, DEBUGGING
-  3 .debug_aranges 00000020  00000000  00000000  00000910  2**0
+  3 .debug_aranges 00000020  00000000  00000000  00000890  2**0
                   CONTENTS, READONLY, DEBUGGING
-  4 .debug_pubnames 0000003c  00000000  00000000  00000930  2**0
+  4 .debug_pubnames 00000027  00000000  00000000  000008b0  2**0
                   CONTENTS, READONLY, DEBUGGING
-  5 .debug_info   0000042b  00000000  00000000  0000096c  2**0
+  5 .debug_info   00000264  00000000  00000000  000008d7  2**0
                   CONTENTS, READONLY, DEBUGGING
-  6 .debug_abbrev 0000011b  00000000  00000000  00000d97  2**0
+  6 .debug_abbrev 0000011b  00000000  00000000  00000b3b  2**0
                   CONTENTS, READONLY, DEBUGGING
-  7 .debug_line   0000033b  00000000  00000000  00000eb2  2**0
+  7 .debug_line   00000252  00000000  00000000  00000c56  2**0
                   CONTENTS, READONLY, DEBUGGING
-  8 .debug_frame  00000040  00000000  00000000  000011f0  2**2
+  8 .debug_frame  00000030  00000000  00000000  00000ea8  2**2
                   CONTENTS, READONLY, DEBUGGING
-  9 .debug_str    0000010f  00000000  00000000  00001230  2**0
+  9 .debug_str    000000fe  00000000  00000000  00000ed8  2**0
                   CONTENTS, READONLY, DEBUGGING
- 10 .debug_pubtypes 00000038  00000000  00000000  0000133f  2**0
+ 10 .debug_pubtypes 00000038  00000000  00000000  00000fd6  2**0
                   CONTENTS, READONLY, DEBUGGING
 
 Disassembly of section .text:
@@ -58,202 +58,110 @@ Disassembly of section .text:
   5a:	d8 e0       	ldi	r29, 0x08	; 8
   5c:	de bf       	out	0x3e, r29	; 62
   5e:	cd bf       	out	0x3d, r28	; 61
-  60:	0e 94 a7 00 	call	0x14e	; 0x14e <main>
-  64:	0c 94 ae 00 	jmp	0x15c	; 0x15c <_exit>
+  60:	0e 94 67 00 	call	0xce	; 0xce <main>
+  64:	0c 94 6e 00 	jmp	0xdc	; 0xdc <_exit>
 
 00000068 <__bad_interrupt>:
   68:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
 
-0000006c <QuetTungCot>:
+0000006c <Drawing>:
 #include <util/delay.h>
 
-void QuetTungCot()
+void Drawing()
 {
 	/*quét t?ng c?t*/
 	PORTC = 0b0000001;//ch?n c?t ??u tiên
   6c:	81 e0       	ldi	r24, 0x01	; 1
   6e:	85 bb       	out	0x15, r24	; 21
-	PORTD = 0b0000000;//ch?n hàng 1
-  70:	12 ba       	out	0x12, r1	; 18
+	PORTD = 0b0110000;//ch?n hàng 1
+  70:	80 e3       	ldi	r24, 0x30	; 48
+  72:	82 bb       	out	0x12, r24	; 18
 	#else
 		//round up by default
 		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
 	#endif
 
 	__builtin_avr_delay_cycles(__ticks_dc);
-  72:	83 ec       	ldi	r24, 0xC3	; 195
-  74:	99 e0       	ldi	r25, 0x09	; 9
-  76:	01 97       	sbiw	r24, 0x01	; 1
-  78:	f1 f7       	brne	.-4      	; 0x76 <QuetTungCot+0xa>
-  7a:	00 c0       	rjmp	.+0      	; 0x7c <QuetTungCot+0x10>
-  7c:	00 00       	nop
+  74:	83 ec       	ldi	r24, 0xC3	; 195
+  76:	99 e0       	ldi	r25, 0x09	; 9
+  78:	01 97       	sbiw	r24, 0x01	; 1
+  7a:	f1 f7       	brne	.-4      	; 0x78 <Drawing+0xc>
+  7c:	00 c0       	rjmp	.+0      	; 0x7e <Drawing+0x12>
+  7e:	00 00       	nop
 	_delay_ms(10);
 	PORTC = 0b0000010;//ch?n c?t th? hai
-  7e:	82 e0       	ldi	r24, 0x02	; 2
-  80:	85 bb       	out	0x15, r24	; 21
-	PORTD = 0b1110110;//ch?n hàng 1
-  82:	86 e7       	ldi	r24, 0x76	; 118
-  84:	82 bb       	out	0x12, r24	; 18
-  86:	e3 ec       	ldi	r30, 0xC3	; 195
-  88:	f9 e0       	ldi	r31, 0x09	; 9
-  8a:	31 97       	sbiw	r30, 0x01	; 1
-  8c:	f1 f7       	brne	.-4      	; 0x8a <QuetTungCot+0x1e>
-  8e:	00 c0       	rjmp	.+0      	; 0x90 <QuetTungCot+0x24>
-  90:	00 00       	nop
+  80:	82 e0       	ldi	r24, 0x02	; 2
+  82:	85 bb       	out	0x15, r24	; 21
+	PORTD = 0b0110110;//ch?n hàng 1
+  84:	86 e3       	ldi	r24, 0x36	; 54
+  86:	82 bb       	out	0x12, r24	; 18
+  88:	e3 ec       	ldi	r30, 0xC3	; 195
+  8a:	f9 e0       	ldi	r31, 0x09	; 9
+  8c:	31 97       	sbiw	r30, 0x01	; 1
+  8e:	f1 f7       	brne	.-4      	; 0x8c <Drawing+0x20>
+  90:	00 c0       	rjmp	.+0      	; 0x92 <Drawing+0x26>
+  92:	00 00       	nop
 	_delay_ms(10);
 	PORTC = 0b0000100;//ch?n c?t th? ba
-  92:	94 e0       	ldi	r25, 0x04	; 4
-  94:	95 bb       	out	0x15, r25	; 21
-	PORTD = 0b1110110;//ch?n hàng tat ca cac hang
-  96:	82 bb       	out	0x12, r24	; 18
-  98:	e3 ec       	ldi	r30, 0xC3	; 195
-  9a:	f9 e0       	ldi	r31, 0x09	; 9
-  9c:	31 97       	sbiw	r30, 0x01	; 1
-  9e:	f1 f7       	brne	.-4      	; 0x9c <QuetTungCot+0x30>
-  a0:	00 c0       	rjmp	.+0      	; 0xa2 <QuetTungCot+0x36>
-  a2:	00 00       	nop
+  94:	94 e0       	ldi	r25, 0x04	; 4
+  96:	95 bb       	out	0x15, r25	; 21
+	PORTD = 0b0110110;//ch?n hàng tat ca cac hang
+  98:	82 bb       	out	0x12, r24	; 18
+  9a:	e3 ec       	ldi	r30, 0xC3	; 195
+  9c:	f9 e0       	ldi	r31, 0x09	; 9
+  9e:	31 97       	sbiw	r30, 0x01	; 1
+  a0:	f1 f7       	brne	.-4      	; 0x9e <Drawing+0x32>
+  a2:	00 c0       	rjmp	.+0      	; 0xa4 <Drawing+0x38>
+  a4:	00 00       	nop
 	_delay_ms(10);
 	PORTC = 0b0001000;//ch?n c?t th? 4
-  a4:	98 e0       	ldi	r25, 0x08	; 8
-  a6:	95 bb       	out	0x15, r25	; 21
-	PORTD = 0b1110110;//ch?n hàng 1
-  a8:	82 bb       	out	0x12, r24	; 18
-  aa:	83 ec       	ldi	r24, 0xC3	; 195
-  ac:	99 e0       	ldi	r25, 0x09	; 9
-  ae:	01 97       	sbiw	r24, 0x01	; 1
-  b0:	f1 f7       	brne	.-4      	; 0xae <QuetTungCot+0x42>
-  b2:	00 c0       	rjmp	.+0      	; 0xb4 <QuetTungCot+0x48>
-  b4:	00 00       	nop
+  a6:	98 e0       	ldi	r25, 0x08	; 8
+  a8:	95 bb       	out	0x15, r25	; 21
+	PORTD = 0b0110110;//ch?n hàng 1
+  aa:	82 bb       	out	0x12, r24	; 18
+  ac:	83 ec       	ldi	r24, 0xC3	; 195
+  ae:	99 e0       	ldi	r25, 0x09	; 9
+  b0:	01 97       	sbiw	r24, 0x01	; 1
+  b2:	f1 f7       	brne	.-4      	; 0xb0 <Drawing+0x44>
+  b4:	00 c0       	rjmp	.+0      	; 0xb6 <Drawing+0x4a>
+  b6:	00 00       	nop
 	_delay_ms(10);
 	PORTC = 0b0010000;//ch?n c?t th? 5
-  b6:	80 e1       	ldi	r24, 0x10	; 16
-  b8:	85 bb       	out	0x15, r24	; 21
-	PORTD = 0b1110000;//ch?n hàng 1
-  ba:	80 e7       	ldi	r24, 0x70	; 112
-  bc:	82 bb       	out	0x12, r24	; 18
-  be:	e3 ec       	ldi	r30, 0xC3	; 195
-  c0:	f9 e0       	ldi	r31, 0x09	; 9
-  c2:	31 97       	sbiw	r30, 0x01	; 1
-  c4:	f1 f7       	brne	.-4      	; 0xc2 <QuetTungCot+0x56>
-  c6:	00 c0       	rjmp	.+0      	; 0xc8 <QuetTungCot+0x5c>
-  c8:	00 00       	nop
+  b8:	80 e1       	ldi	r24, 0x10	; 16
+  ba:	85 bb       	out	0x15, r24	; 21
+	PORTD = 0b0000110;//ch?n hàng 1
+  bc:	86 e0       	ldi	r24, 0x06	; 6
+  be:	82 bb       	out	0x12, r24	; 18
+  c0:	e3 ec       	ldi	r30, 0xC3	; 195
+  c2:	f9 e0       	ldi	r31, 0x09	; 9
+  c4:	31 97       	sbiw	r30, 0x01	; 1
+  c6:	f1 f7       	brne	.-4      	; 0xc4 <Drawing+0x58>
+  c8:	00 c0       	rjmp	.+0      	; 0xca <Drawing+0x5e>
+  ca:	00 00       	nop
 	_delay_ms(10);
 }
-  ca:	08 95       	ret
+  cc:	08 95       	ret
 
-000000cc <QuetTungHang>:
-
-void QuetTungHang()
-{
-	/*quet tung hang*/
-	PORTD = 0b1111011;//ch?n hàng 1
-  cc:	9b e7       	ldi	r25, 0x7B	; 123
-  ce:	92 bb       	out	0x12, r25	; 18
-	PORTC = 0b0011111;//chon 5 cot
-  d0:	8f e1       	ldi	r24, 0x1F	; 31
-  d2:	85 bb       	out	0x15, r24	; 21
-  d4:	e1 ee       	ldi	r30, 0xE1	; 225
-  d6:	f4 e0       	ldi	r31, 0x04	; 4
-  d8:	31 97       	sbiw	r30, 0x01	; 1
-  da:	f1 f7       	brne	.-4      	; 0xd8 <QuetTungHang+0xc>
-  dc:	00 c0       	rjmp	.+0      	; 0xde <QuetTungHang+0x12>
-  de:	00 00       	nop
-	_delay_ms(5);
-	PORTD = 0b1111101;//ch?n hàng 2
-  e0:	8d e7       	ldi	r24, 0x7D	; 125
-  e2:	82 bb       	out	0x12, r24	; 18
-	PORTC = 0b0000100;//chon cot thu 3
-  e4:	84 e0       	ldi	r24, 0x04	; 4
-  e6:	85 bb       	out	0x15, r24	; 21
-  e8:	e1 ee       	ldi	r30, 0xE1	; 225
-  ea:	f4 e0       	ldi	r31, 0x04	; 4
-  ec:	31 97       	sbiw	r30, 0x01	; 1
-  ee:	f1 f7       	brne	.-4      	; 0xec <QuetTungHang+0x20>
-  f0:	00 c0       	rjmp	.+0      	; 0xf2 <QuetTungHang+0x26>
-  f2:	00 00       	nop
-	_delay_ms(5);
-	PORTD = 0b1111011;//ch?n hàng 3
-  f4:	92 bb       	out	0x12, r25	; 18
-	PORTC = 0b0000100;//chon cot thu 3
-  f6:	85 bb       	out	0x15, r24	; 21
-  f8:	e1 ee       	ldi	r30, 0xE1	; 225
-  fa:	f4 e0       	ldi	r31, 0x04	; 4
-  fc:	31 97       	sbiw	r30, 0x01	; 1
-  fe:	f1 f7       	brne	.-4      	; 0xfc <QuetTungHang+0x30>
- 100:	00 c0       	rjmp	.+0      	; 0x102 <QuetTungHang+0x36>
- 102:	00 00       	nop
-	_delay_ms(5);
-	PORTD = 0b1110111;//ch?n hàng 4
- 104:	97 e7       	ldi	r25, 0x77	; 119
- 106:	92 bb       	out	0x12, r25	; 18
-	PORTC = 0b0000100;//chon cot thu 3
- 108:	85 bb       	out	0x15, r24	; 21
- 10a:	e1 ee       	ldi	r30, 0xE1	; 225
- 10c:	f4 e0       	ldi	r31, 0x04	; 4
- 10e:	31 97       	sbiw	r30, 0x01	; 1
- 110:	f1 f7       	brne	.-4      	; 0x10e <QuetTungHang+0x42>
- 112:	00 c0       	rjmp	.+0      	; 0x114 <QuetTungHang+0x48>
- 114:	00 00       	nop
-	_delay_ms(5);
-	PORTD = 0b1101111;//ch?n hàng 5
- 116:	9f e6       	ldi	r25, 0x6F	; 111
- 118:	92 bb       	out	0x12, r25	; 18
-	PORTC = 0b0000100;//chon cot thu 3
- 11a:	85 bb       	out	0x15, r24	; 21
- 11c:	e1 ee       	ldi	r30, 0xE1	; 225
- 11e:	f4 e0       	ldi	r31, 0x04	; 4
- 120:	31 97       	sbiw	r30, 0x01	; 1
- 122:	f1 f7       	brne	.-4      	; 0x120 <QuetTungHang+0x54>
- 124:	00 c0       	rjmp	.+0      	; 0x126 <QuetTungHang+0x5a>
- 126:	00 00       	nop
-	_delay_ms(5);
-	PORTD = 0b1011111;//ch?n hàng 6
- 128:	9f e5       	ldi	r25, 0x5F	; 95
- 12a:	92 bb       	out	0x12, r25	; 18
-	PORTC = 0b0000100;//chon cot thu 3
- 12c:	85 bb       	out	0x15, r24	; 21
- 12e:	e1 ee       	ldi	r30, 0xE1	; 225
- 130:	f4 e0       	ldi	r31, 0x04	; 4
- 132:	31 97       	sbiw	r30, 0x01	; 1
- 134:	f1 f7       	brne	.-4      	; 0x132 <QuetTungHang+0x66>
- 136:	00 c0       	rjmp	.+0      	; 0x138 <QuetTungHang+0x6c>
- 138:	00 00       	nop
-	_delay_ms(5);
-	PORTD = 0b0111111;//ch?n hàng 7
- 13a:	9f e3       	ldi	r25, 0x3F	; 63
- 13c:	92 bb       	out	0x12, r25	; 18
-	PORTC = 0b0000100;//chon cot thu 3
- 13e:	85 bb       	out	0x15, r24	; 21
- 140:	81 ee       	ldi	r24, 0xE1	; 225
- 142:	94 e0       	ldi	r25, 0x04	; 4
- 144:	01 97       	sbiw	r24, 0x01	; 1
- 146:	f1 f7       	brne	.-4      	; 0x144 <QuetTungHang+0x78>
- 148:	00 c0       	rjmp	.+0      	; 0x14a <QuetTungHang+0x7e>
- 14a:	00 00       	nop
-	_delay_ms(5);
-}
- 14c:	08 95       	ret
-
-0000014e <main>:
+000000ce <main>:
 int main(void)
 {
 	/* Replace with your application code */
 	/*Khai báo các chân nào là chân truy?n tín hi?u ra các chân ra s? ?? là 1
 	th? t? t??ng ?ng các chân là PORT7-POR6-PORT5...PORT0*/
 	DDRC = 0b00011111;
- 14e:	8f e1       	ldi	r24, 0x1F	; 31
- 150:	84 bb       	out	0x14, r24	; 20
+  ce:	8f e1       	ldi	r24, 0x1F	; 31
+  d0:	84 bb       	out	0x14, r24	; 20
 	DDRD = 0b01111111;
- 152:	8f e7       	ldi	r24, 0x7F	; 127
- 154:	81 bb       	out	0x11, r24	; 17
+  d2:	8f e7       	ldi	r24, 0x7F	; 127
+  d4:	81 bb       	out	0x11, r24	; 17
 	while (1)
 	{
-		QuetTungHang();
- 156:	0e 94 66 00 	call	0xcc	; 0xcc <QuetTungHang>
- 15a:	fd cf       	rjmp	.-6      	; 0x156 <main+0x8>
+		Drawing();
+  d6:	0e 94 36 00 	call	0x6c	; 0x6c <Drawing>
+  da:	fd cf       	rjmp	.-6      	; 0xd6 <main+0x8>
 
-0000015c <_exit>:
- 15c:	f8 94       	cli
+000000dc <_exit>:
+  dc:	f8 94       	cli
 
-0000015e <__stop_program>:
- 15e:	ff cf       	rjmp	.-2      	; 0x15e <__stop_program>
+000000de <__stop_program>:
+  de:	ff cf       	rjmp	.-2      	; 0xde <__stop_program>
