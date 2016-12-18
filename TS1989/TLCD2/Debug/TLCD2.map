@@ -17,7 +17,7 @@ signature        0x00840000         0x00000400         rw !x
 Linker script and memory map
 
 LOAD d:/program files/atmel/avr studio 5.1/extensions/atmel/avrgcc/3.3.1.27/avrtoolchain/bin/../lib/gcc/avr/4.5.1/../../../../avr/lib/avr5/crtm32.o
-LOAD DEL.o
+LOAD TLCD2.o
 LOAD d:/program files/atmel/avr studio 5.1/extensions/atmel/avrgcc/3.3.1.27/avrtoolchain/bin/../lib/gcc/avr/4.5.1/../../../../avr/lib/avr5\libm.a
 LOAD d:/program files/atmel/avr studio 5.1/extensions/atmel/avrgcc/3.3.1.27/avrtoolchain/bin/../lib/gcc/avr/4.5.1/avr5\libgcc.a
 LOAD d:/program files/atmel/avr studio 5.1/extensions/atmel/avrgcc/3.3.1.27/avrtoolchain/bin/../lib/gcc/avr/4.5.1/../../../../avr/lib/avr5\libc.a
@@ -113,7 +113,7 @@ LOAD d:/program files/atmel/avr studio 5.1/extensions/atmel/avrgcc/3.3.1.27/avrt
 .rela.plt
  *(.rela.plt)
 
-.text           0x00000000      0x546
+.text           0x00000000      0x160
  *(.vectors)
  .vectors       0x00000000       0x54 d:/program files/atmel/avr studio 5.1/extensions/atmel/avrgcc/3.3.1.27/avrtoolchain/bin/../lib/gcc/avr/4.5.1/../../../../avr/lib/avr5/crtm32.o
                 0x00000000                __vector_default
@@ -121,34 +121,32 @@ LOAD d:/program files/atmel/avr studio 5.1/extensions/atmel/avrgcc/3.3.1.27/avrt
  *(.vectors)
  *(.progmem.gcc*)
  *(.progmem*)
- .progmem.data  0x00000054      0x460 DEL.o
-                0x00000054                font7x5
-                0x000004b4                . = ALIGN (0x2)
-                0x000004b4                __trampolines_start = .
+                0x00000054                . = ALIGN (0x2)
+                0x00000054                __trampolines_start = .
  *(.trampolines)
- .trampolines   0x000004b4        0x0 linker stubs
+ .trampolines   0x00000054        0x0 linker stubs
  *(.trampolines*)
-                0x000004b4                __trampolines_end = .
+                0x00000054                __trampolines_end = .
  *(.jumptables)
  *(.jumptables*)
  *(.lowtext)
  *(.lowtext*)
-                0x000004b4                __ctors_start = .
+                0x00000054                __ctors_start = .
  *(.ctors)
-                0x000004b4                __ctors_end = .
-                0x000004b4                __dtors_start = .
+                0x00000054                __ctors_end = .
+                0x00000054                __dtors_start = .
  *(.dtors)
-                0x000004b4                __dtors_end = .
+                0x00000054                __dtors_end = .
  SORT(*)(.ctors)
  SORT(*)(.dtors)
  *(.init0)
- .init0         0x000004b4        0x0 d:/program files/atmel/avr studio 5.1/extensions/atmel/avrgcc/3.3.1.27/avrtoolchain/bin/../lib/gcc/avr/4.5.1/../../../../avr/lib/avr5/crtm32.o
-                0x000004b4                __init
+ .init0         0x00000054        0x0 d:/program files/atmel/avr studio 5.1/extensions/atmel/avrgcc/3.3.1.27/avrtoolchain/bin/../lib/gcc/avr/4.5.1/../../../../avr/lib/avr5/crtm32.o
+                0x00000054                __init
  *(.init0)
  *(.init1)
  *(.init1)
  *(.init2)
- .init2         0x000004b4        0xc d:/program files/atmel/avr studio 5.1/extensions/atmel/avrgcc/3.3.1.27/avrtoolchain/bin/../lib/gcc/avr/4.5.1/../../../../avr/lib/avr5/crtm32.o
+ .init2         0x00000054        0xc d:/program files/atmel/avr studio 5.1/extensions/atmel/avrgcc/3.3.1.27/avrtoolchain/bin/../lib/gcc/avr/4.5.1/../../../../avr/lib/avr5/crtm32.o
  *(.init2)
  *(.init3)
  *(.init3)
@@ -163,43 +161,44 @@ LOAD d:/program files/atmel/avr studio 5.1/extensions/atmel/avrgcc/3.3.1.27/avrt
  *(.init8)
  *(.init8)
  *(.init9)
- .init9         0x000004c0        0x8 d:/program files/atmel/avr studio 5.1/extensions/atmel/avrgcc/3.3.1.27/avrtoolchain/bin/../lib/gcc/avr/4.5.1/../../../../avr/lib/avr5/crtm32.o
+ .init9         0x00000060        0x8 d:/program files/atmel/avr studio 5.1/extensions/atmel/avrgcc/3.3.1.27/avrtoolchain/bin/../lib/gcc/avr/4.5.1/../../../../avr/lib/avr5/crtm32.o
  *(.init9)
  *(.text)
- .text          0x000004c8        0x4 d:/program files/atmel/avr studio 5.1/extensions/atmel/avrgcc/3.3.1.27/avrtoolchain/bin/../lib/gcc/avr/4.5.1/../../../../avr/lib/avr5/crtm32.o
-                0x000004c8                __vector_1
-                0x000004c8                __vector_12
-                0x000004c8                __bad_interrupt
-                0x000004c8                __vector_6
-                0x000004c8                __vector_3
-                0x000004c8                __vector_11
-                0x000004c8                __vector_13
-                0x000004c8                __vector_17
-                0x000004c8                __vector_19
-                0x000004c8                __vector_7
-                0x000004c8                __vector_5
-                0x000004c8                __vector_4
-                0x000004c8                __vector_9
-                0x000004c8                __vector_2
-                0x000004c8                __vector_15
-                0x000004c8                __vector_8
-                0x000004c8                __vector_14
-                0x000004c8                __vector_10
-                0x000004c8                __vector_16
-                0x000004c8                __vector_18
-                0x000004c8                __vector_20
- .text          0x000004cc       0x76 DEL.o
-                0x000004cc                DOTputChar75
-                0x00000508                main
- .text          0x00000542        0x0 d:/program files/atmel/avr studio 5.1/extensions/atmel/avrgcc/3.3.1.27/avrtoolchain/bin/../lib/gcc/avr/4.5.1/avr5\libgcc.a(_exit.o)
-                0x00000542                . = ALIGN (0x2)
+ .text          0x00000068        0x4 d:/program files/atmel/avr studio 5.1/extensions/atmel/avrgcc/3.3.1.27/avrtoolchain/bin/../lib/gcc/avr/4.5.1/../../../../avr/lib/avr5/crtm32.o
+                0x00000068                __vector_1
+                0x00000068                __vector_12
+                0x00000068                __bad_interrupt
+                0x00000068                __vector_6
+                0x00000068                __vector_3
+                0x00000068                __vector_11
+                0x00000068                __vector_13
+                0x00000068                __vector_17
+                0x00000068                __vector_19
+                0x00000068                __vector_7
+                0x00000068                __vector_5
+                0x00000068                __vector_4
+                0x00000068                __vector_9
+                0x00000068                __vector_2
+                0x00000068                __vector_15
+                0x00000068                __vector_8
+                0x00000068                __vector_14
+                0x00000068                __vector_10
+                0x00000068                __vector_16
+                0x00000068                __vector_18
+                0x00000068                __vector_20
+ .text          0x0000006c       0xf0 TLCD2.o
+                0x0000006c                QuetTungCot
+                0x000000cc                QuetTungHang
+                0x0000014e                main
+ .text          0x0000015c        0x0 d:/program files/atmel/avr studio 5.1/extensions/atmel/avrgcc/3.3.1.27/avrtoolchain/bin/../lib/gcc/avr/4.5.1/avr5\libgcc.a(_exit.o)
+                0x0000015c                . = ALIGN (0x2)
  *(.text.*)
- .text.libgcc   0x00000542        0x0 d:/program files/atmel/avr studio 5.1/extensions/atmel/avrgcc/3.3.1.27/avrtoolchain/bin/../lib/gcc/avr/4.5.1/avr5\libgcc.a(_exit.o)
-                0x00000542                . = ALIGN (0x2)
+ .text.libgcc   0x0000015c        0x0 d:/program files/atmel/avr studio 5.1/extensions/atmel/avrgcc/3.3.1.27/avrtoolchain/bin/../lib/gcc/avr/4.5.1/avr5\libgcc.a(_exit.o)
+                0x0000015c                . = ALIGN (0x2)
  *(.fini9)
- .fini9         0x00000542        0x0 d:/program files/atmel/avr studio 5.1/extensions/atmel/avrgcc/3.3.1.27/avrtoolchain/bin/../lib/gcc/avr/4.5.1/avr5\libgcc.a(_exit.o)
-                0x00000542                _exit
-                0x00000542                exit
+ .fini9         0x0000015c        0x0 d:/program files/atmel/avr studio 5.1/extensions/atmel/avrgcc/3.3.1.27/avrtoolchain/bin/../lib/gcc/avr/4.5.1/avr5\libgcc.a(_exit.o)
+                0x0000015c                _exit
+                0x0000015c                exit
  *(.fini9)
  *(.fini8)
  *(.fini8)
@@ -218,15 +217,15 @@ LOAD d:/program files/atmel/avr studio 5.1/extensions/atmel/avrgcc/3.3.1.27/avrt
  *(.fini1)
  *(.fini1)
  *(.fini0)
- .fini0         0x00000542        0x4 d:/program files/atmel/avr studio 5.1/extensions/atmel/avrgcc/3.3.1.27/avrtoolchain/bin/../lib/gcc/avr/4.5.1/avr5\libgcc.a(_exit.o)
+ .fini0         0x0000015c        0x4 d:/program files/atmel/avr studio 5.1/extensions/atmel/avrgcc/3.3.1.27/avrtoolchain/bin/../lib/gcc/avr/4.5.1/avr5\libgcc.a(_exit.o)
  *(.fini0)
-                0x00000546                _etext = .
+                0x00000160                _etext = .
 
-.data           0x00800060        0x0 load address 0x00000546
+.data           0x00800060        0x0 load address 0x00000160
                 0x00800060                PROVIDE (__data_start, .)
  *(.data)
  .data          0x00800060        0x0 d:/program files/atmel/avr studio 5.1/extensions/atmel/avrgcc/3.3.1.27/avrtoolchain/bin/../lib/gcc/avr/4.5.1/../../../../avr/lib/avr5/crtm32.o
- .data          0x00800060        0x0 DEL.o
+ .data          0x00800060        0x0 TLCD2.o
  .data          0x00800060        0x0 d:/program files/atmel/avr studio 5.1/extensions/atmel/avrgcc/3.3.1.27/avrtoolchain/bin/../lib/gcc/avr/4.5.1/avr5\libgcc.a(_exit.o)
  *(.data*)
  *(.rodata)
@@ -240,13 +239,13 @@ LOAD d:/program files/atmel/avr studio 5.1/extensions/atmel/avrgcc/3.3.1.27/avrt
                 0x00800060                PROVIDE (__bss_start, .)
  *(.bss)
  .bss           0x00800060        0x0 d:/program files/atmel/avr studio 5.1/extensions/atmel/avrgcc/3.3.1.27/avrtoolchain/bin/../lib/gcc/avr/4.5.1/../../../../avr/lib/avr5/crtm32.o
- .bss           0x00800060        0x0 DEL.o
+ .bss           0x00800060        0x0 TLCD2.o
  .bss           0x00800060        0x0 d:/program files/atmel/avr studio 5.1/extensions/atmel/avrgcc/3.3.1.27/avrtoolchain/bin/../lib/gcc/avr/4.5.1/avr5\libgcc.a(_exit.o)
  *(.bss*)
  *(COMMON)
                 0x00800060                PROVIDE (__bss_end, .)
-                0x00000546                __data_load_start = LOADADDR (.data)
-                0x00000546                __data_load_end = (__data_load_start + SIZEOF (.data))
+                0x00000160                __data_load_start = LOADADDR (.data)
+                0x00000160                __data_load_end = (__data_load_start + SIZEOF (.data))
 
 .noinit         0x00800060        0x0
                 0x00800060                PROVIDE (__noinit_start, .)
@@ -309,49 +308,45 @@ LOAD d:/program files/atmel/avr studio 5.1/extensions/atmel/avrgcc/3.3.1.27/avrt
 .debug_aranges  0x00000000       0x20
  *(.debug_aranges)
  .debug_aranges
-                0x00000000       0x20 DEL.o
+                0x00000000       0x20 TLCD2.o
 
 .debug_pubnames
-                0x00000000       0x38
+                0x00000000       0x3c
  *(.debug_pubnames)
  .debug_pubnames
-                0x00000000       0x38 DEL.o
+                0x00000000       0x3c TLCD2.o
 
-.debug_info     0x00000000      0x27a
+.debug_info     0x00000000      0x42b
  *(.debug_info)
- .debug_info    0x00000000      0x27a DEL.o
+ .debug_info    0x00000000      0x42b TLCD2.o
  *(.gnu.linkonce.wi.*)
 
-.debug_abbrev   0x00000000      0x188
+.debug_abbrev   0x00000000      0x11b
  *(.debug_abbrev)
- .debug_abbrev  0x00000000      0x188 DEL.o
+ .debug_abbrev  0x00000000      0x11b TLCD2.o
 
-.debug_line     0x00000000      0x2c8
+.debug_line     0x00000000      0x33b
  *(.debug_line)
- .debug_line    0x00000000      0x2c8 DEL.o
+ .debug_line    0x00000000      0x33b TLCD2.o
 
-.debug_frame    0x00000000       0x30
+.debug_frame    0x00000000       0x40
  *(.debug_frame)
- .debug_frame   0x00000000       0x30 DEL.o
+ .debug_frame   0x00000000       0x40 TLCD2.o
 
-.debug_str      0x00000000      0x139
+.debug_str      0x00000000      0x10f
  *(.debug_str)
- .debug_str     0x00000000      0x139 DEL.o
-                                0x16d (size before relaxing)
+ .debug_str     0x00000000      0x10f TLCD2.o
+                                0x143 (size before relaxing)
 
-.debug_loc      0x00000000       0xdc
+.debug_loc
  *(.debug_loc)
- .debug_loc     0x00000000       0xdc DEL.o
 
 .debug_macinfo
  *(.debug_macinfo)
-OUTPUT(DEL.elf elf32-avr)
+OUTPUT(TLCD2.elf elf32-avr)
 LOAD linker stubs
 
 .debug_pubtypes
-                0x00000000       0x46
+                0x00000000       0x38
  .debug_pubtypes
-                0x00000000       0x46 DEL.o
-
-.debug_ranges   0x00000000       0x18
- .debug_ranges  0x00000000       0x18 DEL.o
+                0x00000000       0x38 TLCD2.o

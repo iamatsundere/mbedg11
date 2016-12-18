@@ -15,6 +15,8 @@ Project("{54F91283-7BC4-4236-8FF9-10F437C3AD48}") = "TWO", "TWO\TWO.cproj", "{D1
 EndProject
 Project("{54F91283-7BC4-4236-8FF9-10F437C3AD48}") = "TWOO", "TWOO\TWOO.cproj", "{3D4CC688-45C9-424D-9C39-6F5B1D52DD7F}"
 EndProject
+Project("{54F91283-7BC4-4236-8FF9-10F437C3AD48}") = "TLCD2", "TLCD2\TLCD2.cproj", "{1C3AAE89-61A6-49D0-8B02-6E22F01874F1}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|AVR = Debug|AVR
@@ -48,6 +50,10 @@ Global
 		{3D4CC688-45C9-424D-9C39-6F5B1D52DD7F}.Debug|AVR.Build.0 = Debug|AVR
 		{3D4CC688-45C9-424D-9C39-6F5B1D52DD7F}.Release|AVR.ActiveCfg = Release|AVR
 		{3D4CC688-45C9-424D-9C39-6F5B1D52DD7F}.Release|AVR.Build.0 = Release|AVR
+		{1C3AAE89-61A6-49D0-8B02-6E22F01874F1}.Debug|AVR.ActiveCfg = Debug|AVR
+		{1C3AAE89-61A6-49D0-8B02-6E22F01874F1}.Debug|AVR.Build.0 = Debug|AVR
+		{1C3AAE89-61A6-49D0-8B02-6E22F01874F1}.Release|AVR.ActiveCfg = Release|AVR
+		{1C3AAE89-61A6-49D0-8B02-6E22F01874F1}.Release|AVR.Build.0 = Release|AVR
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

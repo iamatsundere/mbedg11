@@ -15,7 +15,7 @@
 //values in the first place.
 
 #define sbi(sfr,bit) sfr|=_BV(bit) //turn on bit number in sfr (port...) ex: porta |= 0x80 means turn on bit 7
-#define cbi(sfr,bit) sfr&=~_BV(bit) //turn of bit number in sfr (port...) ex: porta &= ~0x80 means turn off bit 7
+#define cbi(sfr,bit) sfr&=~_BV(bit) //turn off bit number in sfr (port...) ex: porta &= ~0x80 means turn off bit 7
 #define EN                            2
 #define RW                           1
 #define RS                            0

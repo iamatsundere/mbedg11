@@ -115,7 +115,7 @@ LOAD d:/program files/atmel/avr studio 5.1/extensions/atmel/avrgcc/3.3.1.27/avrt
 .rela.plt
  *(.rela.plt)
 
-.text           0x00000000      0x274
+.text           0x00000000      0x26e
  *(.vectors)
  .vectors       0x00000000       0x54 d:/program files/atmel/avr studio 5.1/extensions/atmel/avrgcc/3.3.1.27/avrtoolchain/bin/../lib/gcc/avr/4.5.1/../../../../avr/lib/avr5/crtm32.o
                 0x00000000                __vector_default
@@ -190,30 +190,30 @@ LOAD d:/program files/atmel/avr studio 5.1/extensions/atmel/avrgcc/3.3.1.27/avrt
                 0x0000007e                __vector_16
                 0x0000007e                __vector_18
                 0x0000007e                __vector_20
- .text          0x00000082      0x1ee TLCD.o
+ .text          0x00000082      0x1e8 TLCD.o
                 0x00000082                stringlen
                 0x0000009e                Read2Nib
-                0x000000c6                Write2Nib
-                0x000000e4                Write8Bit
-                0x000000ec                wait_LCD
-                0x00000124                init_LCD
-                0x0000015e                home_LCD
-                0x0000016c                move_LCD
-                0x00000184                clr_LCD
-                0x00000192                putChar_LCD
-                0x0000019e                print_LCD
-                0x0000024e                main
- .text          0x00000270        0x0 d:/program files/atmel/avr studio 5.1/extensions/atmel/avrgcc/3.3.1.27/avrtoolchain/bin/../lib/gcc/avr/4.5.1/avr5\libgcc.a(_exit.o)
- .text          0x00000270        0x0 d:/program files/atmel/avr studio 5.1/extensions/atmel/avrgcc/3.3.1.27/avrtoolchain/bin/../lib/gcc/avr/4.5.1/avr5\libgcc.a(_copy_data.o)
-                0x00000270                . = ALIGN (0x2)
+                0x000000c0                Write2Nib
+                0x000000de                Write8Bit
+                0x000000e6                wait_LCD
+                0x0000011e                init_LCD
+                0x00000158                home_LCD
+                0x00000166                move_LCD
+                0x0000017e                clr_LCD
+                0x0000018c                putChar_LCD
+                0x00000198                print_LCD
+                0x00000248                main
+ .text          0x0000026a        0x0 d:/program files/atmel/avr studio 5.1/extensions/atmel/avrgcc/3.3.1.27/avrtoolchain/bin/../lib/gcc/avr/4.5.1/avr5\libgcc.a(_exit.o)
+ .text          0x0000026a        0x0 d:/program files/atmel/avr studio 5.1/extensions/atmel/avrgcc/3.3.1.27/avrtoolchain/bin/../lib/gcc/avr/4.5.1/avr5\libgcc.a(_copy_data.o)
+                0x0000026a                . = ALIGN (0x2)
  *(.text.*)
- .text.libgcc   0x00000270        0x0 d:/program files/atmel/avr studio 5.1/extensions/atmel/avrgcc/3.3.1.27/avrtoolchain/bin/../lib/gcc/avr/4.5.1/avr5\libgcc.a(_exit.o)
- .text.libgcc   0x00000270        0x0 d:/program files/atmel/avr studio 5.1/extensions/atmel/avrgcc/3.3.1.27/avrtoolchain/bin/../lib/gcc/avr/4.5.1/avr5\libgcc.a(_copy_data.o)
-                0x00000270                . = ALIGN (0x2)
+ .text.libgcc   0x0000026a        0x0 d:/program files/atmel/avr studio 5.1/extensions/atmel/avrgcc/3.3.1.27/avrtoolchain/bin/../lib/gcc/avr/4.5.1/avr5\libgcc.a(_exit.o)
+ .text.libgcc   0x0000026a        0x0 d:/program files/atmel/avr studio 5.1/extensions/atmel/avrgcc/3.3.1.27/avrtoolchain/bin/../lib/gcc/avr/4.5.1/avr5\libgcc.a(_copy_data.o)
+                0x0000026a                . = ALIGN (0x2)
  *(.fini9)
- .fini9         0x00000270        0x0 d:/program files/atmel/avr studio 5.1/extensions/atmel/avrgcc/3.3.1.27/avrtoolchain/bin/../lib/gcc/avr/4.5.1/avr5\libgcc.a(_exit.o)
-                0x00000270                _exit
-                0x00000270                exit
+ .fini9         0x0000026a        0x0 d:/program files/atmel/avr studio 5.1/extensions/atmel/avrgcc/3.3.1.27/avrtoolchain/bin/../lib/gcc/avr/4.5.1/avr5\libgcc.a(_exit.o)
+                0x0000026a                _exit
+                0x0000026a                exit
  *(.fini9)
  *(.fini8)
  *(.fini8)
@@ -232,11 +232,11 @@ LOAD d:/program files/atmel/avr studio 5.1/extensions/atmel/avrgcc/3.3.1.27/avrt
  *(.fini1)
  *(.fini1)
  *(.fini0)
- .fini0         0x00000270        0x4 d:/program files/atmel/avr studio 5.1/extensions/atmel/avrgcc/3.3.1.27/avrtoolchain/bin/../lib/gcc/avr/4.5.1/avr5\libgcc.a(_exit.o)
+ .fini0         0x0000026a        0x4 d:/program files/atmel/avr studio 5.1/extensions/atmel/avrgcc/3.3.1.27/avrtoolchain/bin/../lib/gcc/avr/4.5.1/avr5\libgcc.a(_exit.o)
  *(.fini0)
-                0x00000274                _etext = .
+                0x0000026e                _etext = .
 
-.data           0x00800060       0x1c load address 0x00000274
+.data           0x00800060       0x1c load address 0x0000026e
                 0x00800060                PROVIDE (__data_start, .)
  *(.data)
  .data          0x00800060        0x0 d:/program files/atmel/avr studio 5.1/extensions/atmel/avrgcc/3.3.1.27/avrtoolchain/bin/../lib/gcc/avr/4.5.1/../../../../avr/lib/avr5/crtm32.o
@@ -262,8 +262,8 @@ LOAD d:/program files/atmel/avr studio 5.1/extensions/atmel/avrgcc/3.3.1.27/avrt
  *(.bss*)
  *(COMMON)
                 0x0080007c                PROVIDE (__bss_end, .)
-                0x00000274                __data_load_start = LOADADDR (.data)
-                0x00000290                __data_load_end = (__data_load_start + SIZEOF (.data))
+                0x0000026e                __data_load_start = LOADADDR (.data)
+                0x0000028a                __data_load_end = (__data_load_start + SIZEOF (.data))
 
 .noinit         0x0080007c        0x0
                 0x0080007c                PROVIDE (__noinit_start, .)
@@ -343,9 +343,9 @@ LOAD d:/program files/atmel/avr studio 5.1/extensions/atmel/avrgcc/3.3.1.27/avrt
  *(.debug_abbrev)
  .debug_abbrev  0x00000000      0x17e TLCD.o
 
-.debug_line     0x00000000      0x441
+.debug_line     0x00000000      0x439
  *(.debug_line)
- .debug_line    0x00000000      0x441 TLCD.o
+ .debug_line    0x00000000      0x439 TLCD.o
 
 .debug_frame    0x00000000       0xd0
  *(.debug_frame)
