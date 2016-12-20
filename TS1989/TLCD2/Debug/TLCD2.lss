@@ -13,17 +13,17 @@ Idx Name          Size      VMA       LMA       File off  Algn
                   CONTENTS, READONLY, DEBUGGING
   4 .debug_pubnames 00000027  00000000  00000000  000008b0  2**0
                   CONTENTS, READONLY, DEBUGGING
-  5 .debug_info   00000264  00000000  00000000  000008d7  2**0
+  5 .debug_info   0000026e  00000000  00000000  000008d7  2**0
                   CONTENTS, READONLY, DEBUGGING
-  6 .debug_abbrev 0000011b  00000000  00000000  00000b3b  2**0
+  6 .debug_abbrev 0000011b  00000000  00000000  00000b45  2**0
                   CONTENTS, READONLY, DEBUGGING
-  7 .debug_line   00000252  00000000  00000000  00000c56  2**0
+  7 .debug_line   00000252  00000000  00000000  00000c60  2**0
                   CONTENTS, READONLY, DEBUGGING
-  8 .debug_frame  00000030  00000000  00000000  00000ea8  2**2
+  8 .debug_frame  00000030  00000000  00000000  00000eb4  2**2
                   CONTENTS, READONLY, DEBUGGING
-  9 .debug_str    000000fe  00000000  00000000  00000ed8  2**0
+  9 .debug_str    000000fe  00000000  00000000  00000ee4  2**0
                   CONTENTS, READONLY, DEBUGGING
- 10 .debug_pubtypes 00000038  00000000  00000000  00000fd6  2**0
+ 10 .debug_pubtypes 00000038  00000000  00000000  00000fe2  2**0
                   CONTENTS, READONLY, DEBUGGING
 
 Disassembly of section .text:
@@ -65,97 +65,95 @@ Disassembly of section .text:
   68:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
 
 0000006c <Drawing>:
+
+#include <avr/io.h>
 #include <util/delay.h>
 
-void Drawing()
-{
-	/*quét t?ng c?t*/
-	PORTC = 0b0000001;//ch?n c?t ??u tiên
+void Drawing() {
+	PORTA = 0b0000001;
   6c:	81 e0       	ldi	r24, 0x01	; 1
-  6e:	85 bb       	out	0x15, r24	; 21
-	PORTD = 0b0110000;//ch?n hàng 1
+  6e:	8b bb       	out	0x1b, r24	; 27
+	PORTB = 0b0110000;
   70:	80 e3       	ldi	r24, 0x30	; 48
-  72:	82 bb       	out	0x12, r24	; 18
+  72:	88 bb       	out	0x18, r24	; 24
 	#else
 		//round up by default
 		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
 	#endif
 
 	__builtin_avr_delay_cycles(__ticks_dc);
-  74:	83 ec       	ldi	r24, 0xC3	; 195
-  76:	99 e0       	ldi	r25, 0x09	; 9
+  74:	87 ea       	ldi	r24, 0xA7	; 167
+  76:	91 e6       	ldi	r25, 0x61	; 97
   78:	01 97       	sbiw	r24, 0x01	; 1
   7a:	f1 f7       	brne	.-4      	; 0x78 <Drawing+0xc>
   7c:	00 c0       	rjmp	.+0      	; 0x7e <Drawing+0x12>
   7e:	00 00       	nop
-	_delay_ms(10);
-	PORTC = 0b0000010;//ch?n c?t th? hai
+	_delay_ms(100);
+	PORTA = 0b0000010;
   80:	82 e0       	ldi	r24, 0x02	; 2
-  82:	85 bb       	out	0x15, r24	; 21
-	PORTD = 0b0110110;//ch?n hàng 1
+  82:	8b bb       	out	0x1b, r24	; 27
+	PORTB = 0b0110110;
   84:	86 e3       	ldi	r24, 0x36	; 54
-  86:	82 bb       	out	0x12, r24	; 18
-  88:	e3 ec       	ldi	r30, 0xC3	; 195
-  8a:	f9 e0       	ldi	r31, 0x09	; 9
+  86:	88 bb       	out	0x18, r24	; 24
+  88:	e7 ea       	ldi	r30, 0xA7	; 167
+  8a:	f1 e6       	ldi	r31, 0x61	; 97
   8c:	31 97       	sbiw	r30, 0x01	; 1
   8e:	f1 f7       	brne	.-4      	; 0x8c <Drawing+0x20>
   90:	00 c0       	rjmp	.+0      	; 0x92 <Drawing+0x26>
   92:	00 00       	nop
-	_delay_ms(10);
-	PORTC = 0b0000100;//ch?n c?t th? ba
+	_delay_ms(100);
+	PORTA = 0b0000100;
   94:	94 e0       	ldi	r25, 0x04	; 4
-  96:	95 bb       	out	0x15, r25	; 21
-	PORTD = 0b0110110;//ch?n hàng tat ca cac hang
-  98:	82 bb       	out	0x12, r24	; 18
-  9a:	e3 ec       	ldi	r30, 0xC3	; 195
-  9c:	f9 e0       	ldi	r31, 0x09	; 9
+  96:	9b bb       	out	0x1b, r25	; 27
+	PORTB = 0b0110110;
+  98:	88 bb       	out	0x18, r24	; 24
+  9a:	e7 ea       	ldi	r30, 0xA7	; 167
+  9c:	f1 e6       	ldi	r31, 0x61	; 97
   9e:	31 97       	sbiw	r30, 0x01	; 1
   a0:	f1 f7       	brne	.-4      	; 0x9e <Drawing+0x32>
   a2:	00 c0       	rjmp	.+0      	; 0xa4 <Drawing+0x38>
   a4:	00 00       	nop
-	_delay_ms(10);
-	PORTC = 0b0001000;//ch?n c?t th? 4
+	_delay_ms(100);
+	PORTA = 0b0001000;
   a6:	98 e0       	ldi	r25, 0x08	; 8
-  a8:	95 bb       	out	0x15, r25	; 21
-	PORTD = 0b0110110;//ch?n hàng 1
-  aa:	82 bb       	out	0x12, r24	; 18
-  ac:	83 ec       	ldi	r24, 0xC3	; 195
-  ae:	99 e0       	ldi	r25, 0x09	; 9
+  a8:	9b bb       	out	0x1b, r25	; 27
+	PORTB = 0b0110110;
+  aa:	88 bb       	out	0x18, r24	; 24
+  ac:	87 ea       	ldi	r24, 0xA7	; 167
+  ae:	91 e6       	ldi	r25, 0x61	; 97
   b0:	01 97       	sbiw	r24, 0x01	; 1
   b2:	f1 f7       	brne	.-4      	; 0xb0 <Drawing+0x44>
   b4:	00 c0       	rjmp	.+0      	; 0xb6 <Drawing+0x4a>
   b6:	00 00       	nop
-	_delay_ms(10);
-	PORTC = 0b0010000;//ch?n c?t th? 5
+	_delay_ms(100);
+	PORTA = 0b0010000;
   b8:	80 e1       	ldi	r24, 0x10	; 16
-  ba:	85 bb       	out	0x15, r24	; 21
-	PORTD = 0b0000110;//ch?n hàng 1
+  ba:	8b bb       	out	0x1b, r24	; 27
+	PORTB = 0b0000110;
   bc:	86 e0       	ldi	r24, 0x06	; 6
-  be:	82 bb       	out	0x12, r24	; 18
-  c0:	e3 ec       	ldi	r30, 0xC3	; 195
-  c2:	f9 e0       	ldi	r31, 0x09	; 9
+  be:	88 bb       	out	0x18, r24	; 24
+  c0:	e7 ea       	ldi	r30, 0xA7	; 167
+  c2:	f1 e6       	ldi	r31, 0x61	; 97
   c4:	31 97       	sbiw	r30, 0x01	; 1
   c6:	f1 f7       	brne	.-4      	; 0xc4 <Drawing+0x58>
   c8:	00 c0       	rjmp	.+0      	; 0xca <Drawing+0x5e>
   ca:	00 00       	nop
-	_delay_ms(10);
+	_delay_ms(100);
 }
   cc:	08 95       	ret
 
 000000ce <main>:
-int main(void)
-{
-	/* Replace with your application code */
-	/*Khai báo các chân nào là chân truy?n tín hi?u ra các chân ra s? ?? là 1
-	th? t? t??ng ?ng các chân là PORT7-POR6-PORT5...PORT0*/
-	DDRC = 0b00011111;
+
+
+
+int main(void) {
+	DDRA = 0b0011111;
   ce:	8f e1       	ldi	r24, 0x1F	; 31
-  d0:	84 bb       	out	0x14, r24	; 20
-	DDRD = 0b01111111;
+  d0:	8a bb       	out	0x1a, r24	; 26
+	DDRB = 0b1111111;
   d2:	8f e7       	ldi	r24, 0x7F	; 127
-  d4:	81 bb       	out	0x11, r24	; 17
-	while (1)
-	{
+  d4:	87 bb       	out	0x17, r24	; 23
+	while (1) {
 		Drawing();
   d6:	0e 94 36 00 	call	0x6c	; 0x6c <Drawing>
   da:	fd cf       	rjmp	.-6      	; 0xd6 <main+0x8>

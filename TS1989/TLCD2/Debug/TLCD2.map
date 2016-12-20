@@ -315,9 +315,9 @@ LOAD d:/program files/atmel/avr studio 5.1/extensions/atmel/avrgcc/3.3.1.27/avrt
  .debug_pubnames
                 0x00000000       0x27 TLCD2.o
 
-.debug_info     0x00000000      0x264
+.debug_info     0x00000000      0x26e
  *(.debug_info)
- .debug_info    0x00000000      0x264 TLCD2.o
+ .debug_info    0x00000000      0x26e TLCD2.o
  *(.gnu.linkonce.wi.*)
 
 .debug_abbrev   0x00000000      0x11b
